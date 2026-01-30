@@ -1,10 +1,10 @@
-<!-- START OF FILE ai_studio_os_v11_cute_icons.html -->
+<!-- START OF FILE ai_studio_os_v12_strawberry_edition.html -->
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>灵犀 OS (V11 萌系美化版)</title>
+    <title>灵犀 OS (V12 草莓甜心版)</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
@@ -16,6 +16,7 @@
             --icon-border: 1px solid rgba(255, 255, 255, 0.3);
             --icon-radius: 18px;
             --icon-size: 30px;
+            --icon-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
         
         /* === 主题定义 === */
@@ -24,34 +25,95 @@
         body.theme-nebula { --wallpaper: url('https://images.unsplash.com/photo-1538370965246-fe4c0b457e56?q=80&w=800&auto=format&fit=crop'); --app-bg: #1e1b2e; --card-bg: #2e2a44; --input-bg: #403a61; --accent-color: #bf55ec; }
         body.theme-forest { --wallpaper: url('https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=800&auto=format&fit=crop'); --app-bg: #172f23; --card-bg: #214232; --input-bg: #2f5d42; --accent-color: #2ed573; }
         
-        /* 浅色/可爱系 (App内部纯色不透明) */
+        /* 浅色系 (App内部纯色不透明) */
         body.theme-cream-pink { --wallpaper: linear-gradient(135deg, #fff0f5 0%, #ffd1dc 100%); --text-color: #5d4037; --text-sub: #8d6e63; --text-shadow: none; --app-bg: #fff0f5; --card-bg: #ffffff; --input-bg: #ffffff; --input-border: #ffcce0; --border-color: rgba(0,0,0,0.05); --accent-color: #ff80ab; --icon-bg: rgba(255, 128, 171, 0.4); }
         body.theme-cream-blue { --wallpaper: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%); --text-color: #37474f; --text-sub: #78909c; --text-shadow: none; --app-bg: #e1f5fe; --card-bg: #ffffff; --input-bg: #ffffff; --input-border: #b3e5fc; --border-color: rgba(0,0,0,0.05); --accent-color: #29b6f6; --icon-bg: rgba(41, 182, 246, 0.3); }
         body.theme-cream-yellow { --wallpaper: linear-gradient(135deg, #fffde7 0%, #fff59d 100%); --text-color: #5d4037; --text-sub: #8d6e63; --text-shadow: none; --app-bg: #fff9c4; --card-bg: #ffffff; --input-bg: #ffffff; --input-border: #fff176; --border-color: rgba(0,0,0,0.05); --accent-color: #fbc02d; --icon-bg: rgba(251, 192, 45, 0.3); }
         
-        /* 新增可爱主题 */
+        /* 可爱系 */
         body.theme-taro { --wallpaper: linear-gradient(135deg, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%); --text-color: #4a4a4a; --text-sub: #888; --text-shadow: none; --app-bg: #f4eeff; --card-bg: #fff; --input-bg: #fff; --input-border: #dcd6f7; --border-color: rgba(0,0,0,0.05); --accent-color: #a29bfe; --icon-bg: rgba(162, 155, 254, 0.4); }
         body.theme-matcha { --wallpaper: linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%); --text-color: #2d3436; --text-sub: #636e72; --text-shadow: none; --app-bg: #f0fff4; --card-bg: #fff; --input-bg: #fff; --input-border: #b8e994; --border-color: rgba(0,0,0,0.05); --accent-color: #78e08f; --icon-bg: rgba(120, 224, 143, 0.4); }
         body.theme-peach { --wallpaper: linear-gradient(120deg, #f6d365 0%, #fda085 100%); --text-color: #4a4a4a; --text-sub: #888; --text-shadow: none; --app-bg: #fff5ee; --card-bg: #fff; --input-bg: #fff; --input-border: #ffccbc; --border-color: rgba(0,0,0,0.05); --accent-color: #ff9f43; --icon-bg: rgba(255, 159, 67, 0.4); }
 
-        /* === 图标样式定义 === */
-        /* 默认: Glass (毛玻璃) */
+        /* 🍓 草莓甜心限定版 Theme 🍓 */
+        body.theme-strawberry { 
+            --wallpaper: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%); 
+            --text-color: #5d4037; --text-sub: #bcaaa4; --text-shadow: none; 
+            --app-bg: #fff0f5; /* 纯色粉 */
+            --card-bg: #ffffff; 
+            --input-bg: #fff; --input-border: #ffcdd2; 
+            --border-color: #ffcdd2; 
+            --accent-color: #ff5252; /* 草莓红 */
+            --icon-bg: rgba(255, 82, 82, 0.3); 
+        }
+        /* 草莓主题专属装饰 */
+        body.theme-strawberry .app-nav { border-bottom: 2px dashed var(--accent-color); }
+        body.theme-strawberry .nav-btn i { display: none; } /* 隐藏原来的箭头 */
+        body.theme-strawberry .nav-btn::before { content: '🍓'; font-size: 20px; margin-right:5px; } /* 用草莓代替返回 */
+        body.theme-strawberry .app-title::after { content: ' 🍰'; font-size: 14px; }
+        body.theme-strawberry .card { border: 1px solid #ffebee; position: relative; overflow: hidden; }
+        body.theme-strawberry .card::before { content: '✨'; position: absolute; top: 5px; right: 5px; font-size: 10px; opacity: 0.5; color: var(--accent-color); pointer-events: none; }
+        body.theme-strawberry .yijing-menu-btn { border: 2px dashed #ffcdd2; }
+
+        /* === 图标样式定义 (Icon Styles) === */
+        
+        /* 1. 默认: Glass (毛玻璃) */
         body.style-glass .frosted-icon { backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); }
         
-        /* 镂空 (Outline) */
+        /* 2. 镂空 (Outline) */
         body.style-outline .frosted-icon { background: transparent !important; border: 2px solid var(--accent-color); color: var(--accent-color); box-shadow: none; backdrop-filter: none; }
         body.style-outline .frosted-icon i { text-shadow: none; }
 
-        /* 扁平 (Flat) */
+        /* 3. 扁平 (Flat) */
         body.style-flat .frosted-icon { background: var(--card-bg); border: none; box-shadow: 0 2px 10px rgba(0,0,0,0.1); backdrop-filter: none; }
         body.style-flat .frosted-icon i { color: var(--accent-color); }
 
-        /* Emoji (大表情) */
+        /* 4. Emoji (大表情) */
         body.style-emoji .frosted-icon { background: transparent; border: none; box-shadow: none; backdrop-filter: none; font-size: 52px; animation: bounce 2s infinite ease-in-out; }
-        body.style-emoji .frosted-icon i { display: none; } /* Hide FontAwesome */
+        body.style-emoji .frosted-icon i { display: none; } 
         body.style-emoji .frosted-icon::after { content: attr(data-emoji); }
-        
         @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+
+        /* 5. 纯白 (White) - 适合深色壁纸 */
+        body.style-white .frosted-icon { 
+            background: rgba(255, 255, 255, 0.2); 
+            border: 1px solid rgba(255, 255, 255, 0.5); 
+            color: #fff; 
+            backdrop-filter: blur(8px); 
+            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
+
+        /* 6. 纯黑 (Black) - 适合浅色壁纸 */
+        body.style-black .frosted-icon { 
+            background: rgba(0, 0, 0, 0.5); 
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            color: #fff; 
+            backdrop-filter: blur(8px); 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        /* 7. 水滴质感 (Water) - 高级透明 */
+        body.style-water .frosted-icon {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 
+                inset 0 0 15px rgba(255, 255, 255, 0.6), /* 内部高光 */
+                inset 2px 2px 5px rgba(255,255,255,0.8), /* 边缘高光 */
+                5px 5px 15px rgba(0,0,0,0.1); /* 外部阴影 */
+            backdrop-filter: blur(3px);
+            border-radius: 22px;
+            color: #fff;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+        /* 如果是浅色主题下的水滴，图标颜色深一点 */
+        body[class*="theme-cream"].style-water .frosted-icon,
+        body[class*="theme-strawberry"].style-water .frosted-icon,
+        body[class*="theme-taro"].style-water .frosted-icon {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.25);
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+
 
         * { box-sizing: border-box; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; -webkit-tap-highlight-color: transparent; }
         html, body { margin: 0; padding: 0; height: 100vh; overflow: hidden; }
@@ -77,7 +139,7 @@
         .icon-wrap { display: flex; flex-direction: column; align-items: center; cursor: pointer; transition: transform 0.1s; }
         .icon-wrap:active { transform: scale(0.95); }
         
-        .frosted-icon { width: 68px; height: 68px; border-radius: var(--icon-radius); background: var(--icon-bg); border: var(--icon-border); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); display: flex; justify-content: center; align-items: center; font-size: var(--icon-size); color: #fff; margin-bottom: 8px; transition: all 0.3s; }
+        .frosted-icon { width: 68px; height: 68px; border-radius: var(--icon-radius); background: var(--icon-bg); border: var(--icon-border); box-shadow: var(--icon-shadow); display: flex; justify-content: center; align-items: center; font-size: var(--icon-size); color: #fff; margin-bottom: 8px; transition: all 0.3s; }
         body[class*="theme-cream"] .frosted-icon { color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,0.2); } 
         
         .icon-name { font-size: 12px; color: var(--text-color); text-shadow: var(--text-shadow); font-weight: 500; }
@@ -250,18 +312,23 @@
                     <div class="theme-button" style="background:linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);" data-theme="theme-cream-blue" onclick="applyTheme('theme-cream-blue')"><span class="theme-emoji">☁️</span></div>
                     <div class="theme-button" style="background:linear-gradient(135deg, #fffde7 0%, #fff59d 100%);" data-theme="theme-cream-yellow" onclick="applyTheme('theme-cream-yellow')"><span class="theme-emoji">🍋</span></div>
                     
-                    <!-- New Cute Themes -->
                     <div class="theme-button" style="background:linear-gradient(135deg, #f3e7e9 0%, #e3eeff 100%);" data-theme="theme-taro" onclick="applyTheme('theme-taro')"><span class="theme-emoji">🍠</span></div>
                     <div class="theme-button" style="background:linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%);" data-theme="theme-matcha" onclick="applyTheme('theme-matcha')"><span class="theme-emoji">🍵</span></div>
                     <div class="theme-button" style="background:linear-gradient(120deg, #f6d365 0%, #fda085 100%);" data-theme="theme-peach" onclick="applyTheme('theme-peach')"><span class="theme-emoji">🍑</span></div>
+                    
+                    <!-- New Strawberry Theme -->
+                    <div class="theme-button" style="background:linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);" data-theme="theme-strawberry" onclick="applyTheme('theme-strawberry')"><span class="theme-emoji">🍓</span></div>
                 </div>
                 
                 <h4 style="margin-top:20px;">图标样式</h4>
-                <div class="icon-style-grid">
+                <div class="icon-style-grid" style="grid-template-columns: repeat(3, 1fr);">
                     <div class="icon-style-btn" onclick="applyIconStyle('style-glass')">默认</div>
                     <div class="icon-style-btn" onclick="applyIconStyle('style-outline')">镂空</div>
                     <div class="icon-style-btn" onclick="applyIconStyle('style-emoji')">Emoji</div>
                     <div class="icon-style-btn" onclick="applyIconStyle('style-flat')">纯平</div>
+                    <div class="icon-style-btn" onclick="applyIconStyle('style-white')">纯白</div>
+                    <div class="icon-style-btn" onclick="applyIconStyle('style-black')">纯黑</div>
+                    <div class="icon-style-btn" onclick="applyIconStyle('style-water')">水滴</div>
                 </div>
 
                 <h4 style="margin-top: 20px;">自定义壁纸</h4>
@@ -481,8 +548,6 @@
         const sessions = getAllChatSessions();
         const currentId = getCurrentChatId();
         modal.innerHTML = '';
-        
-        // Add "New Session" at the top
         const newBtn = document.createElement('div');
         newBtn.className = 'modal-list-item';
         newBtn.style.textAlign = 'center';
@@ -490,22 +555,15 @@
         newBtn.innerHTML = '<i class="fas fa-plus"></i> 创建新对话';
         newBtn.onclick = () => { createNewChatSession(); overlay.classList.remove('show'); };
         modal.appendChild(newBtn);
-
         const sortedIds = Object.keys(sessions).sort((a,b) => b-a);
         sortedIds.forEach(id => {
             const firstUserMsg = sessions[id].find(m => m.type === 'user');
             const sessionName = firstUserMsg ? firstUserMsg.text.substring(0, 15) + (firstUserMsg.text.length>15?'...':'') : '新对话';
             const date = new Date(parseInt(id)).toLocaleString();
-            
             const item = document.createElement('div');
             item.className = 'modal-list-item ' + (id === currentId ? 'active' : '');
             item.innerHTML = `<div>${escapeHTML(sessionName)}</div><small>${date}</small>`;
-            item.onclick = () => { 
-                localStorage.setItem('os_current_chat_id', id);
-                renderCurrentChatHistory();
-                updateSessionTriggerText();
-                overlay.classList.remove('show');
-            };
+            item.onclick = () => { localStorage.setItem('os_current_chat_id', id); renderCurrentChatHistory(); updateSessionTriggerText(); overlay.classList.remove('show'); };
             modal.appendChild(item);
         });
         overlay.classList.add('show');
@@ -527,8 +585,6 @@
         const sessions = getAllChatSessions(); 
         if (!currentId || !sessions[currentId]) { createNewChatSession(); currentId = getCurrentChatId(); } 
         const history = sessions[currentId] || []; 
-        
-        // Calculate estimated tokens (roughly 1.5 chars per token for mixed content as estimation)
         const totalChars = history.reduce((acc, msg) => acc + msg.text.length, 0);
         document.getElementById('chat-token-display').innerText = `Est. Tokens: ${Math.ceil(totalChars)}`;
 
