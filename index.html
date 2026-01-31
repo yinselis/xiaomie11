@@ -1,10 +1,10 @@
-<!-- START OF FILE ai_studio_os_v12_strawberry_final_optimized.html -->
+<!-- START OF FILE ai_studio_os_v13_optimized.html -->
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>灵犀 OS (V12 草莓甜心版)</title>
+    <title>灵犀 OS (V13 优化版)</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
@@ -66,32 +66,12 @@
         body.style-black .frosted-icon { background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(255, 255, 255, 0.1); color: #fff; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
         body.style-water .frosted-icon { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.3); box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.6), inset 2px 2px 5px rgba(255,255,255,0.8), 5px 5px 15px rgba(0,0,0,0.1); backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); border-radius: 22px; color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,0.2); }
         /* 浅色主题下的水滴样式适配 */
-        /* 新增图标样式: 磨砂黑 */
-        body.style-matte-black .frosted-icon { 
-            background: rgba(0, 0, 0, 0.6); 
-            border: 1px solid rgba(255, 255, 255, 0.1); 
-            color: rgba(255, 255, 255, 0.8); 
-            backdrop-filter: blur(10px); 
-            -webkit-backdrop-filter: blur(10px); 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2); 
-            text-shadow: none;
-        }
-        /* 新增图标样式: 磨砂白 */
-        body.style-matte-white .frosted-icon { 
-            background: rgba(255, 255, 255, 0.6); 
-            border: 1px solid rgba(255, 255, 255, 0.4); 
-            color: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(12px); 
-            -webkit-backdrop-filter: blur(12px); 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
-            text-shadow: none;
-        }
-        body[class*="theme-cream"].style-matte-white .frosted-icon, body.theme-strawberry.style-matte-white .frosted-icon {
-            color: rgba(0, 0, 0, 0.7);
-        }
+        body.style-matte-black .frosted-icon { background: rgba(0, 0, 0, 0.6); border: 1px solid rgba(255, 255, 255, 0.1); color: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: 0 4px 15px rgba(0,0,0,0.2); text-shadow: none; }
+        body.style-matte-white .frosted-icon { background: rgba(255, 255, 255, 0.6); border: 1px solid rgba(255, 255, 255, 0.4); color: rgba(0, 0, 0, 0.7); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-shadow: none; }
+        body[class*="theme-cream"].style-matte-white .frosted-icon, body.theme-strawberry.style-matte-white .frosted-icon { color: rgba(0, 0, 0, 0.7); }
         body[class*="theme-cream"].style-water .frosted-icon, body[class*="theme-strawberry"].style-water .frosted-icon, body[class*="theme-taro"].style-water .frosted-icon { color: #fff; background: rgba(255, 255, 255, 0.25); text-shadow: 0 1px 2px rgba(0,0,0,0.1); }
         
-                * { box-sizing: border-box; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; -webkit-tap-highlight-color: transparent; }
+        * { box-sizing: border-box; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; -webkit-tap-highlight-color: transparent; }
         html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; position: fixed; top: 0; left: 0; }
         body { background: #000; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; display: flex; justify-content: center; align-items: center; }
 
@@ -105,88 +85,24 @@
         .clock-time { font-size: 72px; font-weight: 200; line-height: 1; }
         .clock-date { font-size: 18px; margin-top: 5px; opacity: 0.8; }
 
-        /* === 每日一签组件样式 === */
-        /* 每日一学折叠样式 */
-        .daily-header-collapsible {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            cursor: pointer;
-            padding: 5px 0; /* 根据需要调整间距 */
-            margin-bottom: 5px; /* 头部下方留一点空间 */
-            color: var(--text-color); /* 确保文字颜色随主题变化 */
-            text-shadow: var(--text-shadow); /* 确保文字阴影随主题变化 */
-        }
-        /* 浅色模式下，每日一学折叠头部文字适配 */
-        body[class*="theme-cream"] .daily-header-collapsible, body.theme-strawberry .daily-header-collapsible, body.theme-taro .daily-header-collapsible, body.theme-matcha .daily-header-collapsible, body.theme-peach .daily-header-collapsible {
-            color: var(--text-color); /* 使用主题的文本颜色 */
-            text-shadow: none; /* 浅色模式通常不需要文字阴影 */
-        }
-
-        .daily-header-collapsible .daily-title {
-            margin-bottom: 0; /* 覆盖原有下边距 */
-        }
-        .daily-header-collapsible i {
-            transition: transform 0.2s ease-in-out;
-            font-size: 16px; /* 箭头图标大小 */
-            opacity: 0.8;
-        }
-        .daily-header-collapsible i.rotated {
-            transform: rotate(-90deg); /* 折叠时图标旋转 */
-        }
-
-        .daily-content-details {
-            max-height: 500px; /* 过渡动画的最大高度 */
-            overflow: hidden;
-            transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
-            opacity: 1;
-            padding-top: 5px; /* 让内容与头部有点距离 */
-            width: 100%; /* 确保内容区宽度正确 */
-            display: flex; /* 让内部元素垂直排列 */
-            flex-direction: column;
-            align-items: center;
-        }
-        .daily-content-details.collapsed {
-            max-height: 0;
-            opacity: 0;
-            margin-top: -15px; /* 折叠时向上收缩，减少空白 */
-            padding-top: 0;
-        }
-        /* 确保gua-tip在折叠后没有可见 */
-        .daily-content-details.collapsed .daily-tip {
-            display: none;
-        }
-        .daily-card { 
-            margin: 10px 10px 20px 10px; 
-            background: rgba(255,255,255,0.15); 
-            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2); 
-            border-radius: 20px; 
-            padding: 15px; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            text-align: center; 
-            color: var(--text-color); 
-            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            transition: all 0.3s;
-        }
+        /* 每日一签 */
+        .daily-header-collapsible { display: flex; justify-content: space-between; align-items: center; width: 100%; cursor: pointer; padding: 5px 0; margin-bottom: 5px; color: var(--text-color); text-shadow: var(--text-shadow); }
+        body[class*="theme-cream"] .daily-header-collapsible, body.theme-strawberry .daily-header-collapsible, body.theme-taro .daily-header-collapsible, body.theme-matcha .daily-header-collapsible, body.theme-peach .daily-header-collapsible { color: var(--text-color); text-shadow: none; }
+        .daily-header-collapsible .daily-title { margin-bottom: 0; }
+        .daily-header-collapsible i { transition: transform 0.2s ease-in-out; font-size: 16px; opacity: 0.8; }
+        .daily-header-collapsible i.rotated { transform: rotate(-90deg); }
+        .daily-content-details { max-height: 500px; overflow: hidden; transition: max-height 0.3s ease-out, opacity 0.3s ease-out; opacity: 1; padding-top: 5px; width: 100%; display: flex; flex-direction: column; align-items: center; }
+        .daily-content-details.collapsed { max-height: 0; opacity: 0; margin-top: -15px; padding-top: 0; }
+        .daily-content-details.collapsed .daily-tip { display: none; }
+        .daily-card { margin: 10px 10px 20px 10px; background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 15px; display: flex; flex-direction: column; align-items: center; text-align: center; color: var(--text-color); text-shadow: 0 1px 2px rgba(0,0,0,0.2); box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: all 0.3s; }
         .daily-card:active { transform: scale(0.98); }
         .daily-title { font-size: 14px; font-weight: bold; opacity: 0.8; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px; }
         .daily-content-box { display: none; flex-direction: column; align-items: center; width: 100%; animation: fade-in 0.5s forwards; }
         .daily-symbol { font-size: 32px; font-family: "Segoe UI Symbol", sans-serif; line-height: 1; margin: 5px 0; }
         .daily-gua-name { font-size: 18px; font-weight: bold; margin-bottom: 5px; }
         .daily-tip { font-size: 13px; opacity: 0.9; background: rgba(0,0,0,0.1); padding: 8px 12px; border-radius: 10px; margin-top: 5px; line-height: 1.5; width: 100%; text-align: left; }
-        /* 浅色模式适配 */
         body[class*="theme-cream"] .daily-tip, body[class*="theme-strawberry"] .daily-tip { background: rgba(255,255,255,0.5); color: #5d4037; }
-        
-        .daily-btn { 
-            background: var(--accent-color); color: #fff; border: none; padding: 10px 20px; 
-            border-radius: 25px; font-size: 14px; font-weight: bold; cursor: pointer; 
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2); margin-top: 5px; display: flex; align-items: center; gap: 6px;
-        }
+        .daily-btn { background: var(--accent-color); color: #fff; border: none; padding: 10px 20px; border-radius: 25px; font-size: 14px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.2); margin-top: 5px; display: flex; align-items: center; gap: 6px; }
         .daily-done { color: var(--accent-color); font-weight: bold; font-size: 14px; display: flex; align-items: center; gap: 5px; margin-top: 10px; }
 
         .app-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px 12px; }
@@ -229,7 +145,7 @@
         .theme-button { width: 100%; padding-bottom: 100%; border-radius: 50%; border: 2px solid rgba(255,255,255,0.2); cursor: pointer; position: relative; box-shadow: 0 2px 5px rgba(0,0,0,0.2); background-size: cover; background-position: center; }
         .theme-button.active { box-shadow: 0 0 0 3px var(--accent-color); border-color: #fff; }
         .theme-emoji { position: absolute; top:50%; left:50%; transform:translate(-50%, -50%); font-size: 24px; }
-                .icon-style-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 10px; }
+        .icon-style-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 10px; }
         .icon-style-btn { padding: 15px 5px; border-radius: 10px; background: var(--card-bg); border: 1px solid var(--border-color); text-align: center; cursor: pointer; font-size: 12px; }
         .icon-style-btn.active { border-color: var(--accent-color); background: rgba(128,128,128,0.1); color: var(--accent-color); font-weight: bold; }
 
@@ -278,23 +194,37 @@
         .modal-list-item:hover, .modal-list-item.active { border-color: var(--accent-color); background: rgba(128,128,128,0.2); }
         .modal-list-item div { font-weight: bold; font-size: 14px; margin-bottom: 2px; }
         .modal-list-item small { color: var(--text-sub); font-size: 11px; }
+
+        /* === 优化后的日记样式 === */
+        .diary-date-header { padding: 12px 16px; background: var(--icon-bg); margin-bottom: 10px; border-radius: 12px; font-size: 15px; font-weight: bold; color: var(--text-color); cursor: pointer; display: flex; justify-content: space-between; align-items: center; backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .diary-group { display: none; margin-bottom: 20px; } /* 默认折叠 */
+        .diary-group.expanded { display: block; animation: fade-in 0.3s; }
         
-        /* Diary App Modifications */
-        .diary-date-header { padding: 10px; background: var(--icon-bg); margin-bottom: 10px; border-radius: 8px; font-size: 14px; font-weight: bold; color: var(--text-color); cursor: pointer; display: flex; justify-content: space-between; align-items: center; backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); }
-        .diary-group { display: block; }
-        .diary-group.collapsed { display: none; }
-        .diary-entry-actions { margin-top: 10px; display: flex; justify-content: flex-end; }
-        .diary-reply-btn { background-color: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 5px 10px; font-size: 12px; width: auto; box-shadow: none; }
-        
-        .check-wrap { display: flex; align-items: center; gap: 10px; padding: 12px 0; border-bottom: 1px solid var(--border-color); }
-        .check-wrap input[type="checkbox"] { width: 20px; height: 20px; margin: 0; }
-        .check-content { flex: 1; }
-        .batch-toolbar { position: absolute; bottom: 20px; left: 20px; right: 20px; display: flex; gap: 10px; z-index: 200; }
-        
-                h4 { margin: 10px 0; color: var(--text-color); }
+        .diary-event-pair { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px; padding: 20px; margin-bottom: 16px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); }
+        .diary-user-entry { font-size: 16px; line-height: 1.7; color: var(--text-color); margin-bottom: 15px; white-space: pre-wrap; letter-spacing: 0.5px; }
+        .diary-ai-reply { background: rgba(128,128,128,0.1); border-left: 3px solid var(--accent-color); padding: 15px; border-radius: 8px; font-size: 15px; line-height: 1.6; color: var(--text-color); white-space: pre-wrap; }
+        .diary-reply-name { font-weight: bold; color: var(--accent-color); margin-bottom: 5px; font-size: 13px; display: block; }
+        .diary-meta { font-size: 12px; color: var(--text-sub); margin-bottom: 10px; display: flex; justify-content: space-between; }
+        .diary-reply-btn { margin-top: 10px; width: auto; padding: 8px 16px; font-size: 13px; }
+
+        /* === 优化后的角色网格样式 === */
+        .char-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding-bottom: 20px; }
+        .char-card-item { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px; padding: 20px 15px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 140px; cursor: pointer; transition: transform 0.2s, border-color 0.2s; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .char-card-item:active { transform: scale(0.96); border-color: var(--accent-color); }
+        .char-avatar { width: 50px; height: 50px; background: rgba(128,128,128,0.2); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 24px; color: var(--accent-color); margin-bottom: 10px; }
+        .char-name-display { font-weight: bold; font-size: 15px; margin-bottom: 5px; color: var(--text-color); }
+        .char-desc-preview { font-size: 11px; color: var(--text-sub); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.4; }
+
+        /* 全屏角色编辑 Modal */
+        .full-screen-modal { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--app-bg); z-index: 500; display: none; flex-direction: column; }
+        .full-screen-modal.show { display: flex; animation: slide-up 0.3s cubic-bezier(0.2, 0.8, 0.2, 1); }
+        @keyframes slide-up { from { transform: translateY(100%); } to { transform: translateY(0); } }
+
+        h4 { margin: 10px 0; color: var(--text-color); }
         small { color: var(--text-sub); }
     </style>
 </head>
+
 <body class="theme-default style-glass">
 
 <!-- Custom Prompt Modal -->
@@ -368,7 +298,7 @@
                 <div class="daily-gua-name" id="daily-gua-name"></div>
                 <div class="daily-tip" id="daily-gua-tip"></div>
                 <div class="daily-done"><i class="fas fa-check-circle"></i> 今日已打卡</div>
-            </div> <!-- End of daily-collapsible-area -->
+            </div>
         </div>
     </div>
 
@@ -440,7 +370,37 @@
         </div>
     </div>
     
-        <div id="app-chars" class="app-window"><div class="app-nav"><div class="nav-btn" onclick="closeApp('app-chars')"><i class="fas fa-chevron-left"></i></div><div class="app-title">角色资料</div><div class="nav-btn" style="justify-content:flex-end;" onclick="openCharForm()"><i class="fas fa-plus"></i></div></div><div class="app-content"><div id="char-form-modal" class="card" style="display:none; border: 2px solid var(--accent-color);"><h4 id="char-form-title">新建角色</h4><input type="hidden" id="char-form-id"><input type="text" id="char-form-name" placeholder="角色名"><textarea id="char-form-desc" rows="2" placeholder="人设"></textarea><div style="display:flex; gap:10px;"><button class="secondary" onclick="closeCharForm()">取消</button><button onclick="saveChar()">保存</button></div></div><div id="char-list"></div></div></div>
+    <!-- Character App (Updated) -->
+    <div id="app-chars" class="app-window">
+        <div class="app-nav">
+            <div class="nav-btn" onclick="closeApp('app-chars')"><i class="fas fa-chevron-left"></i></div>
+            <div class="app-title">角色资料</div>
+            <div class="nav-btn" style="justify-content:flex-end;" onclick="openCharForm()"><i class="fas fa-plus"></i></div>
+        </div>
+        <div class="app-content">
+            <!-- Full Screen Modal for Edit (Hidden by default) -->
+            <div id="char-form-full" class="full-screen-modal">
+                <div class="app-nav" style="margin-top:0; border-bottom:none;">
+                    <div class="nav-btn" onclick="closeCharForm()">取消</div>
+                    <div class="app-title" id="char-form-title">编辑角色</div>
+                    <div class="nav-btn" style="justify-content:flex-end;" onclick="saveChar()">保存</div>
+                </div>
+                <div style="padding: 20px;">
+                    <div class="card" style="padding: 20px;">
+                        <input type="hidden" id="char-form-id">
+                        <h4>角色名称</h4>
+                        <input type="text" id="char-form-name" placeholder="例如：江晦" style="font-weight:bold; font-size:18px;">
+                        <h4 style="margin-top:20px;">人设描述</h4>
+                        <textarea id="char-form-desc" rows="6" placeholder="详细描述角色的性格、语气、背景..." style="line-height:1.6;"></textarea>
+                    </div>
+                    <button class="danger" id="btn-delete-char" onclick="deleteChar()" style="margin-top:20px; display:none;"><i class="fas fa-trash"></i> 删除角色</button>
+                </div>
+            </div>
+            
+            <!-- Grid List -->
+            <div id="char-list" class="char-grid"></div>
+        </div>
+    </div>
     
     <!-- Yijing App -->
     <div id="app-yijing" class="app-window">
@@ -494,7 +454,7 @@
         </div>
     </div>
     
-    <!-- Diary App (Re-structured) -->
+    <!-- Diary App (Modified) -->
     <div id="app-diary" class="app-window">
         <div class="app-nav"><div class="nav-btn" onclick="closeApp('app-diary')"><i class="fas fa-chevron-left"></i></div><div class="app-title">交换日记</div><div class="nav-btn"></div></div>
         <div class="app-content">
@@ -538,64 +498,8 @@
     const trigramBits = { 1:[1,1,1], 2:[0,1,1], 3:[1,0,1], 4:[0,0,1], 5:[1,1,0], 6:[0,1,0], 7:[1,0,0], 8:[0,0,0], 0:[0,0,0] };
     const HEXAGRAM_DATA = { '1_1':"乾为天",'1_2':"天地否",'1_3':"天泽履",'1_4':"天火同人",'1_5':"天风姤",'1_6':"天水讼",'1_7':"天山遁",'1_8':"天雷无妄", '2_1':"地天泰",'2_2':"坤为地",'2_3':"地泽临",'2_4':"地火明夷",'2_5':"地风升",'2_6':"地水师",'2_7':"地山谦",'2_8':"地雷复", '3_1':"泽天夬",'3_2':"泽地萃",'3_3':"兑为兑",'3_4':"泽火革",'3_5':"泽风大过",'3_6':"泽水困",'3_7':"泽山咸",'3_8':"泽雷随", '4_1':"火天大有",'4_2':"火地晋",'4_3':"火泽睽",'4_4':"离为火",'4_5':"火风鼎",'4_6':"火水未济",'4_7':"火山旅",'4_8':"火雷噬嗑", '5_1':"风天小畜",'5_2':"风地观",'5_3':"风泽中孚",'5_4':"风火家人",'5_5':"巽为风",'5_6':"风水涣",'5_7':"风山渐",'5_8':"风雷益", '6_1':"水天需",'6_2':"水地比",'6_3':"水泽节",'6_4':"水火既济",'6_5':"水风井",'6_6':"坎为水",'6_7':"水山蹇",'6_8':"水雷屯", '7_1':"山天大畜",'7_2':"山地剥",'7_3':"山泽损",'7_4':"山火贲",'7_5':"山风蛊",'7_6':"山水蒙",'7_7':"艮为山",'7_8':"山雷颐", '8_1':"雷天大壮",'8_2':"雷地豫",'8_3':"雷泽归妹",'8_4':"雷火丰",'8_5':"雷风恒",'8_6':"雷水解",'8_7':"雷山小过",'8_8':"震为雷" };
     const HEXAGRAM_SYMBOLS = { '1_1':"䷀",'1_2':"䷋",'1_3':"䷉",'1_4':"䷌",'1_5':"䷫",'1_6':"䷅",'1_7':"䷠",'1_8':"䷘", '2_1':"䷊",'2_2':"䷁",'2_3':"䷒",'2_4':"䷣",'2_5':"䷭",'2_6':"䷆",'2_7':"䷎",'2_8':"䷗", '3_1':"䷪",'3_2':"䷬",'3_3':"䷹",'3_4':"䷰",'3_5':"䷛",'3_6':"䷮",'3_7':"䷞",'3_8':"䷐", '4_1':"䷍",'4_2':"䷢",'4_3':"䷥",'4_4':"䷝",'4_5':"䷱",'4_6':"䷿",'4_7':"䷷",'4_8':"䷔", '5_1':"䷈",'5_2':"䷓",'5_3':"䷼",'5_4':"䷤",'5_5':"䷸",'5_6':"䷺",'5_7':"䷴",'5_8':"䷩", '6_1':"䷄",'6_2':"䷇",'6_3':"䷻",'6_4':"䷾",'6_5':"䷯",'6_6':"䷜",'6_7':"䷦",'6_8':"䷂", '7_1':"䷙",'7_2':"䷖",'7_3':"䷨",'7_4':"䷕",'7_5':"䷑",'7_6':"䷃",'7_7':"䷳",'7_8':"䷚", '8_1':"䷡",'8_2':"䷏",'8_3':"䷵",'8_4':"䷶",'8_5':"䷟",'8_6':"䷧",'8_7':"䷽",'8_8':"䷲" };
-
-    // 每日一签核心释义
-    const HEXAGRAM_MEANINGS = {
-        '1_1': "强健积极，持续努力，终将亨通。", '1_2': "阴阳不合，时运不济，最好等待。",
-        '1_3': "行为需谨慎，如履薄冰，防范风险。", '1_4': "与人和睦，团结合作，能成大事。",
-        '1_5': "邂逅相遇，可能有意外之缘，需防诱惑。", '1_6': "易生争执，诉讼不利，退一步海阔天空。",
-        '1_7': "暂时退避，明哲保身，不是懦弱是智慧。", '1_8': "顺其自然，不做妄想，可免灾祸。",
-        '2_1': "万事亨通，阴阳调和，是最佳状态。", '2_2': "柔顺包容，厚德载物，默默耕耘必有收获。",
-        '2_3': "亲临现场，督查管理，才能获得成功。", '2_4': "才华被压制，环境黑暗，需隐忍待机。",
-        '2_5': "事业上升，逐渐成长，前景光明。", '2_6': "陷入困境，如同行军，需有智谋与纪律。",
-        '2_7': "谦虚受益，满招亏损，低调做人好事自来。", '2_8': "生机复苏，重新开始，一切都会好起来。",
-        '3_1': "果断抉择，下定决心，去除小人。", '3_2': "人才聚集，团结一心，共同发展。",
-        '3_3': "喜悦和顺，与人沟通，带来好运。", '3_4': "大刀阔斧，改革创新，能开创新局面。",
-        '3_5': "负担过重，压力巨大，需防范倾覆。", '3_6': "身处困境，坚守正道，等待转机。",
-        '3_7': "心意相通，情感交感，是美好的开始。", '3_8': "随和顺从，跟随强者，能得到益处。",
-        '4_1': "大获丰收，财富充裕，但需保持谦逊。", '4_2': "事业顺利，晋升有望，光明就在前方。",
-        '4_3': "意见不合，产生隔阂，求同存异是关键。", '4_4': "光明美丽，依附于正道，才能长久。",
-        '4_5': "鼎故革新，稳重行事，可得大宝。", '4_6': "事情尚未成功，仍需努力，不可懈怠。",
-        '4_7': "奔波在外，孤独旅行，需谨慎行事。", '4_8': "消除障碍，果断处理，才能解决问题。",
-        '5_1': "力量不足，积累实力，等待时机。", '5_2': "观察形势，审时度势，做出正确判断。",
-        '5_3': "诚信待人，言行一致，能感化人心。", '5_4': "家庭和睦，各司其职，是事业的基础。",
-        '5_5': "顺势而为，灵活变通，方能无往不利。", '5_6': "涣散解除，消除隔阂，重新凝聚人心。",
-        '5_7': "循序渐进，逐步发展，不可急于求成。", '5_8': "增补益处，互助互利，共同进步。",
-        '6_1': "耐心等待，时机未到，需要储备力量。", '6_2': "亲密合作，互相扶持，能战胜困难。",
-        '6_3': "节制欲望，适可而止，才能平安。", '6_4': "功成名就，万事俱备，但需居安思危。",
-        '6_5': "修德养才，惠及于人，如同井水养人。", '6_6': "身陷险境，困难重重，需保持冷静。",
-        '6_7': "前路艰难，停止前进，寻求帮助。", '6_8': "初生艰难，万事开头难，需要耐心。",
-        '7_1': "积蓄力量，厚积薄发，将有大成。", '7_2': "根基动摇，小人侵蚀，需防范未然。",
-        '7_3': "先损后益，牺牲小我，成就大我。", '7_4': "文饰得当，注重外在，但不能华而不实。",
-        '7_5': "内部问题，积弊已深，需大力整治。", '7_6': "启蒙教育，教化人心，需要耐心引导。",
-        '7_7': "停止不前，时机不对，静观其变。", '7_8': "颐养天年，修身养性，注重内在修为。",
-        '8_1': "声势浩大，气势强盛，但不可冒进。", '8_2': "顺应民心，提前准备，将有喜悦之事。",
-        '8_3': "关系不正，行为不当，需谨慎处理。", '8_4': "丰富盛大，但盛极必衰，需保持警惕。",
-        '8_5': "持之以恒，坚守正道，方能长久。", '8_6': "解除困难，化解危机，雨过天晴。",
-        '8_7': "小事过错，在所难免，宜静不宜动。", '8_8': "震动警示，及时反省，可免灾祸。"
-    };
-
-    // 记忆口诀表 (Memory Tips)
-    const HEXAGRAM_MEMORY_TIPS = {
-        '1_1': "天行健，君子以自强不息。双天合璧，能量爆棚！",
-        '1_2': "天地不交。天往上走，地往下沉，俩人谁也不理谁（否卦）。",
-        '1_3': "天下有泽。像老虎尾巴，虽然危险但小心点就没事。",
-        '1_4': "天火同人。大家围着火堆在星空下聚会，志同道合。",
-        '2_1': "地天泰。地气上升，天气下降，阴阳交融，万事大吉！",
-        '2_2': "地势坤，君子以厚德载物。大地母亲，包容一切。",
-        '2_6': "地水师。地里藏着水，像军队埋伏，深藏不露。",
-        '3_3': "兑为悦。两张嘴巴在说话，聊得很开心。",
-        '4_4': "离为火。火上加火，热情似火，但也得注意别烧着了。",
-        '5_5': "巽为风。风吹风，无孔不入，顺势而为。",
-        '6_4': "水火既济。水在火上煮，饭熟了！事情成了！(但也得小心火灭了)",
-        '4_6': "火水未济。火往上烧，水往下流，两个碰不到面，事情还没成。",
-        '6_6': "坎为水。水流湍急，前面是坑后面也是坑，要小心行事。",
-        '7_7': "艮为山。一山更比一山高，就是让你停下来歇歇。",
-        '8_8': "震为雷。轰隆隆！雷声大作，虽然吓人但能震醒万物。",
-        '7_1': "山天大畜。山里藏着天？那得多大的胸怀，积累也是一种力量。",
-        '3_7': "泽山咸。少女遇到少男，互相感应，心动的感觉。",
-        '5_8': "风雷益。风助火势，雷助风威，互相帮助大家都好。",
-    };
+    const HEXAGRAM_MEANINGS = { '1_1': "强健积极，持续努力，终将亨通。", '1_2': "阴阳不合，时运不济，最好等待。", '1_3': "行为需谨慎，如履薄冰，防范风险。", '1_4': "与人和睦，团结合作，能成大事。", '1_5': "邂逅相遇，可能有意外之缘，需防诱惑。", '1_6': "易生争执，诉讼不利，退一步海阔天空。", '1_7': "暂时退避，明哲保身，不是懦弱是智慧。", '1_8': "顺其自然，不做妄想，可免灾祸。", '2_1': "万事亨通，阴阳调和，是最佳状态。", '2_2': "柔顺包容，厚德载物，默默耕耘必有收获。", '2_3': "亲临现场，督查管理，才能获得成功。", '2_4': "才华被压制，环境黑暗，需隐忍待机。", '2_5': "事业上升，逐渐成长，前景光明。", '2_6': "陷入困境，如同行军，需有智谋与纪律。", '2_7': "谦虚受益，满招亏损，低调做人好事自来。", '2_8': "生机复苏，重新开始，一切都会好起来。", '3_1': "果断抉择，下定决心，去除小人。", '3_2': "人才聚集，团结一心，共同发展。", '3_3': "喜悦和顺，与人沟通，带来好运。", '3_4': "大刀阔斧，改革创新，能开创新局面。", '3_5': "负担过重，压力巨大，需防范倾覆。", '3_6': "身处困境，坚守正道，等待转机。", '3_7': "心意相通，情感交感，是美好的开始。", '3_8': "随和顺从，跟随强者，能得到益处。", '4_1': "大获丰收，财富充裕，但需保持谦逊。", '4_2': "事业顺利，晋升有望，光明就在前方。", '4_3': "意见不合，产生隔阂，求同存异是关键。", '4_4': "光明美丽，依附于正道，才能长久。", '4_5': "鼎故革新，稳重行事，可得大宝。", '4_6': "事情尚未成功，仍需努力，不可懈怠。", '4_7': "奔波在外，孤独旅行，需谨慎行事。", '4_8': "消除障碍，果断处理，才能解决问题。", '5_1': "力量不足，积累实力，等待时机。", '5_2': "观察形势，审时度势，做出正确判断。", '5_3': "诚信待人，言行一致，能感化人心。", '5_4': "家庭和睦，各司其职，是事业的基础。", '5_5': "顺势而为，灵活变通，方能无往不利。", '5_6': "涣散解除，消除隔阂，重新凝聚人心。", '5_7': "循序渐进，逐步发展，不可急于求成。", '5_8': "增补益处，互助互利，共同进步。", '6_1': "耐心等待，时机未到，需要储备力量。", '6_2': "亲密合作，互相扶持，能战胜困难。", '6_3': "节制欲望，适可而止，才能平安。", '6_4': "功成名就，万事俱备，但需居安思危。", '6_5': "修德养才，惠及于人，如同井水养人。", '6_6': "身陷险境，困难重重，需保持冷静。", '6_7': "前路艰难，停止前进，寻求帮助。", '6_8': "初生艰难，万事开头难，需要耐心。", '7_1': "积蓄力量，厚积薄发，将有大成。", '7_2': "根基动摇，小人侵蚀，需防范未然。", '7_3': "先损后益，牺牲小我，成就大我。", '7_4': "文饰得当，注重外在，但不能华而不实。", '7_5': "内部问题，积弊已深，需大力整治。", '7_6': "启蒙教育，教化人心，需要耐心引导。", '7_7': "停止不前，时机不对，静观其变。", '7_8': "颐养天年，修身养性，注重内在修为。", '8_1': "声势浩大，气势强盛，但不可冒进。", '8_2': "顺应民心，提前准备，将有喜悦之事。", '8_3': "关系不正，行为不当，需谨慎处理。", '8_4': "丰富盛大，但盛极必衰，需保持警惕。", '8_5': "持之以恒，坚守正道，方能长久。", '8_6': "解除困难，化解危机，雨过天晴。", '8_7': "小事过错，在所难免，宜静不宜动。", '8_8': "震动警示，及时反省，可免灾祸。" };
+    const HEXAGRAM_MEMORY_TIPS = { '1_1': "天行健，君子以自强不息。", '1_2': "天地不交，否。", '1_3': "踩了老虎尾巴，小心。", '2_1': "地气上腾，天气下降，大吉。", '2_2': "厚德载物。", '6_4': "水在火上，饭熟了。", '4_6': "火在水上，还没成功。" };
 
     function getGuaTip(code) {
         const meaning = HEXAGRAM_MEANINGS[code] || "暂无简释，请体会卦象。";
@@ -620,29 +524,18 @@
     let isAIResponding = false;
 
     // --- Init & System Functions ---
-    // 优化：立即执行视觉相关的加载
-    loadCustomWallpaper(); 
-    loadTheme(); 
-    loadIconStyle(); 
-
-    updateClock(); setInterval(updateClock, 1000);
-    initBattery();
-    migrateChatData(); 
+    loadCustomWallpaper(); loadTheme(); loadIconStyle(); 
+    updateClock(); setInterval(updateClock, 1000); initBattery(); migrateChatData(); 
     
-    // 优化：将非首屏渲染的内容放入 DOMContentLoaded
     document.addEventListener('DOMContentLoaded', () => { 
-        loadConfig(); 
-        renderCharList(); 
-        renderYijingHistory(); 
-        renderDiaryFeed(); 
-        renderCurrentChatHistory(); 
-        initDailyWidget(); // 初始化每日一签
+        loadConfig(); renderCharList(); renderYijingHistory(); renderDiaryFeed(); 
+        renderCurrentChatHistory(); initDailyWidget(); 
     });
 
     function updateClock() { const t = new Date(); const timeStr = `${String(t.getHours()).padStart(2,'0')}:${String(t.getMinutes()).padStart(2,'0')}`; document.getElementById('clock-small').innerText = timeStr; document.getElementById('clock-big').innerText = timeStr; const days=["日","一","二","三","四","五","六"]; document.getElementById('clock-date').innerText = `${t.getMonth()+1}月${t.getDate()}日, 星期${days[t.getDay()]}`; }
     function initBattery() { const status = document.getElementById('battery-status'); if ('getBattery' in navigator) { navigator.getBattery().then(bat => { const update = () => { const icon = bat.charging ? 'fa-bolt' : bat.level > 0.8 ? 'fa-battery-full' : bat.level > 0.5 ? 'fa-battery-three-quarters' : bat.level > 0.2 ? 'fa-battery-quarter' : 'fa-battery-empty'; status.innerHTML = `<i class="fas ${icon}"></i> ${Math.round(bat.level*100)}%`; }; update(); bat.addEventListener('levelchange', update); bat.addEventListener('chargingchange', update); }); } }
 
-    function openApp(id) { document.getElementById(id).classList.add('active'); if(id==='app-diary') updateDiaryRolePicker(); if(id==='app-chat') { updateChatRolePicker(); updateSessionTriggerText(); renderCurrentChatHistory(); setInitialChatModeIcon(); } if(id==='app-instructions') loadMasterPrompt(); }
+    function openApp(id) { document.getElementById(id).classList.add('active'); if(id==='app-chat') { updateChatRolePicker(); updateSessionTriggerText(); renderCurrentChatHistory(); setInitialChatModeIcon(); } if(id==='app-instructions') loadMasterPrompt(); }
     function closeApp(id) { document.getElementById(id).classList.remove('active'); }
     
     // --- Custom Modal Functions ---
@@ -650,740 +543,237 @@
     function closeCustomPrompt() { document.getElementById('custom-prompt-overlay').classList.remove('show'); if (customPromptCallback) customPromptCallback(null); customPromptCallback = null; }
     function confirmCustomPrompt() { const val = document.getElementById('custom-prompt-input').value.trim(); document.getElementById('custom-prompt-overlay').classList.remove('show'); if (customPromptCallback) customPromptCallback(val); customPromptCallback = null; }
 
-    // --- Appearance & Wallpaper (修复版: 自动压缩) ---
-    function applyTheme(themeName) { 
-        document.body.className = document.body.className.replace(/theme-[\w-]+/g, '').trim();
-        
-        document.body.classList.add(themeName);
-        localStorage.setItem('os_theme', themeName); 
-        document.querySelectorAll('.theme-button').forEach(btn => btn.classList.toggle('active', btn.dataset.theme === themeName));
-        const customWallpaper = localStorage.getItem('os_custom_wallpaper');
-        if (customWallpaper) { applyCustomWallpaper(customWallpaper); } 
-        else { document.getElementById('phone-frame').style.backgroundImage = ''; }
-    }
+    // --- Appearance & Wallpaper ---
+    function applyTheme(themeName) { document.body.className = document.body.className.replace(/theme-[\w-]+/g, '').trim(); document.body.classList.add(themeName); localStorage.setItem('os_theme', themeName); document.querySelectorAll('.theme-button').forEach(btn => btn.classList.toggle('active', btn.dataset.theme === themeName)); const customWallpaper = localStorage.getItem('os_custom_wallpaper'); if (customWallpaper) { applyCustomWallpaper(customWallpaper); } else { document.getElementById('phone-frame').style.backgroundImage = ''; } }
     function loadTheme() { const savedTheme = localStorage.getItem('os_theme') || 'theme-default'; applyTheme(savedTheme); }
     function applyIconStyle(styleName) { document.body.className = document.body.className.replace(/style-[\w-]+/g, '').trim(); document.body.classList.add(styleName); localStorage.setItem('os_icon_style', styleName); document.querySelectorAll('.icon-style-btn').forEach(btn => btn.classList.toggle('active', btn.getAttribute('onclick').includes(styleName))); }
     function loadIconStyle() { const savedStyle = localStorage.getItem('os_icon_style') || 'style-glass'; applyIconStyle(savedStyle); }
 
-    function handleWallpaperUpload(files) {
-        if (!files.length) return;
-        const file = files[0];
-        const btn = document.querySelector('button[onclick*="wallpaper-upload"]');
-        const originText = btn.innerHTML;
-        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 处理中...'; btn.disabled = true;
-        const reader = new FileReader();
-        reader.onload = (e) => {
-            const img = new Image();
-            img.onload = () => {
-                const canvas = document.createElement('canvas');
-                let width = img.width, height = img.height;
-                const maxSize = 1080;
-                if (width > height) { if (width > maxSize) { height *= maxSize / width; width = maxSize; } } else { if (height > maxSize) { width *= maxSize / height; height = maxSize; } }
-                canvas.width = width; canvas.height = height;
-                const ctx = canvas.getContext('2d'); ctx.drawImage(img, 0, 0, width, height);
-                try {
-                    const dataUrl = canvas.toDataURL('image/jpeg', 0.6);
-                    localStorage.setItem('os_custom_wallpaper', dataUrl);
-                    applyCustomWallpaper(dataUrl);
-                    alert('自定义壁纸设置成功！');
-                } catch (err) { alert('图片即使压缩后依然过大，请尝试换一张更小的图片。'); } finally { btn.innerHTML = originText; btn.disabled = false; }
-            };
-            img.src = e.target.result;
-        };
-        reader.readAsDataURL(file);
-    }
+    function handleWallpaperUpload(files) { if (!files.length) return; const file = files[0]; const btn = document.querySelector('button[onclick*="wallpaper-upload"]'); const originText = btn.innerHTML; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 处理中...'; btn.disabled = true; const reader = new FileReader(); reader.onload = (e) => { const img = new Image(); img.onload = () => { const canvas = document.createElement('canvas'); let width = img.width, height = img.height; const maxSize = 1080; if (width > height) { if (width > maxSize) { height *= maxSize / width; width = maxSize; } } else { if (height > maxSize) { width *= maxSize / height; height = maxSize; } } canvas.width = width; canvas.height = height; const ctx = canvas.getContext('2d'); ctx.drawImage(img, 0, 0, width, height); try { const dataUrl = canvas.toDataURL('image/jpeg', 0.6); localStorage.setItem('os_custom_wallpaper', dataUrl); applyCustomWallpaper(dataUrl); alert('自定义壁纸设置成功！'); } catch (err) { alert('图片即使压缩后依然过大，请尝试换一张更小的图片。'); } finally { btn.innerHTML = originText; btn.disabled = false; } }; img.src = e.target.result; }; reader.readAsDataURL(file); }
     function applyCustomWallpaper(url) { const frame = document.getElementById('phone-frame'); if (frame) { frame.style.backgroundImage = `url(${url})`; } }
     function removeCustomWallpaper() { if (localStorage.getItem('os_custom_wallpaper')) { localStorage.removeItem('os_custom_wallpaper'); document.getElementById('phone-frame').style.backgroundImage = ''; alert('自定义壁纸已移除。'); applyTheme(localStorage.getItem('os_theme') || 'theme-default'); } else { alert('没有设置自定义壁纸。'); } }
     function loadCustomWallpaper() { const customWallpaper = localStorage.getItem('os_custom_wallpaper'); if (customWallpaper) { applyCustomWallpaper(customWallpaper); } }
 
-    // --- Daily Widget Logic (每日一签) ---
-    function initDailyWidget() {
-        const today = new Date().toISOString().split('T')[0];
-        const stored = JSON.parse(localStorage.getItem('os_daily_card') || '{}');
-        if (stored.date === today && stored.checked) {
-            renderDailyContent(stored.code);
-            // 应用保存的折叠状态
-            const isCollapsed = localStorage.getItem('os_daily_content_collapsed') === 'true';
-            const contentArea = document.getElementById('daily-collapsible-area');
-            const collapseIcon = document.getElementById('daily-collapse-icon');
-            if (contentArea && collapseIcon) {
-                if (isCollapsed) {
-                    contentArea.classList.add('collapsed');
-                    collapseIcon.classList.add('rotated');
-                } else {
-                    contentArea.classList.remove('collapsed');
-                    collapseIcon.classList.remove('rotated');
-                }
-            }
-        } else {
-            document.getElementById('daily-empty').style.display = 'flex';
-            document.getElementById('daily-content').style.display = 'none';
-        }
-    }
-    function doDailyCheckIn() {
-        const btn = document.querySelector('.daily-btn');
-        btn.disabled = true;
-        document.getElementById('daily-loading').style.display = 'block';
-        setTimeout(() => {
-            const n1 = Math.floor(Math.random() * 8) + 1;
-            const n2 = Math.floor(Math.random() * 8) + 1;
-            const code = `${n1}_${n2}`;
-            const today = new Date().toISOString().split('T')[0];
-            const data = { date: today, checked: true, code: code };
-            localStorage.setItem('os_daily_card', JSON.stringify(data));
-            renderDailyContent(code);
-            document.getElementById('daily-loading').style.display = 'none';
-        }, 800);
-    }
-    function renderDailyContent(code) {
-        document.getElementById('daily-empty').style.display = 'none';
-        const box = document.getElementById('daily-content');
-        box.style.display = 'flex'; // 确保主容器可见
-        
-        // 渲染内容
-        document.getElementById('daily-symbol-text').innerText = HEXAGRAM_SYMBOLS[code] || "☯";
-        document.getElementById('daily-gua-name').innerText = HEXAGRAM_DATA[code] || "未知卦";
-        document.getElementById('daily-gua-tip').innerHTML = getGuaTip(code);
+    // --- Daily Widget Logic ---
+    function initDailyWidget() { const today = new Date().toISOString().split('T')[0]; const stored = JSON.parse(localStorage.getItem('os_daily_card') || '{}'); if (stored.date === today && stored.checked) { renderDailyContent(stored.code); const isCollapsed = localStorage.getItem('os_daily_content_collapsed') === 'true'; const contentArea = document.getElementById('daily-collapsible-area'); const collapseIcon = document.getElementById('daily-collapse-icon'); if (contentArea && collapseIcon) { if (isCollapsed) { contentArea.classList.add('collapsed'); collapseIcon.classList.add('rotated'); } else { contentArea.classList.remove('collapsed'); collapseIcon.classList.remove('rotated'); } } } else { document.getElementById('daily-empty').style.display = 'flex'; document.getElementById('daily-content').style.display = 'none'; } }
+    function doDailyCheckIn() { const btn = document.querySelector('.daily-btn'); btn.disabled = true; document.getElementById('daily-loading').style.display = 'block'; setTimeout(() => { const n1 = Math.floor(Math.random() * 8) + 1; const n2 = Math.floor(Math.random() * 8) + 1; const code = `${n1}_${n2}`; const today = new Date().toISOString().split('T')[0]; const data = { date: today, checked: true, code: code }; localStorage.setItem('os_daily_card', JSON.stringify(data)); renderDailyContent(code); document.getElementById('daily-loading').style.display = 'none'; }, 800); }
+    function renderDailyContent(code) { document.getElementById('daily-empty').style.display = 'none'; const box = document.getElementById('daily-content'); box.style.display = 'flex'; document.getElementById('daily-symbol-text').innerText = HEXAGRAM_SYMBOLS[code] || "☯"; document.getElementById('daily-gua-name').innerText = HEXAGRAM_DATA[code] || "未知卦"; document.getElementById('daily-gua-tip').innerHTML = getGuaTip(code); const isCollapsed = localStorage.getItem('os_daily_content_collapsed') === 'true'; const contentArea = document.getElementById('daily-collapsible-area'); const collapseIcon = document.getElementById('daily-collapse-icon'); if (contentArea && collapseIcon) { if (isCollapsed) { contentArea.classList.add('collapsed'); collapseIcon.classList.add('rotated'); } else { contentArea.classList.remove('collapsed'); collapseIcon.classList.remove('rotated'); } } }
+    function toggleDailyContentCollapse() { const contentArea = document.getElementById('daily-collapsible-area'); const collapseIcon = document.getElementById('daily-collapse-icon'); if (!contentArea || !collapseIcon) return; const isCollapsed = contentArea.classList.toggle('collapsed'); collapseIcon.classList.toggle('rotated', isCollapsed); localStorage.setItem('os_daily_content_collapsed', isCollapsed); }
 
-        // 重新应用保存的折叠状态，以防在同一会话中签到后状态丢失
-        const isCollapsed = localStorage.getItem('os_daily_content_collapsed') === 'true';
-        const contentArea = document.getElementById('daily-collapsible-area');
-        const collapseIcon = document.getElementById('daily-collapse-icon');
-        if (contentArea && collapseIcon) {
-            if (isCollapsed) {
-                contentArea.classList.add('collapsed');
-                collapseIcon.classList.add('rotated');
-            } else {
-                contentArea.classList.remove('collapsed');
-                collapseIcon.classList.remove('rotated');
-            }
-        }
-    }
-
-    // --- Data Management & AI Formatting ---
+    // --- Data & Config ---
     function exportData() { const allData = {}; for (let i = 0; i < localStorage.length; i++){ const key = localStorage.key(i); if (key.startsWith('os_')) { allData[key] = localStorage.getItem(key); } } const blob = new Blob([JSON.stringify(allData, null, 2)], { type: 'application/json' }); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; const date = new Date().toISOString().slice(0, 10); a.download = `lingxi_os_backup_${date}.json`; a.click(); URL.revokeObjectURL(url); alert('备份文件已开始下载！'); }
     function handleImport(files) { if (!files.length) return; const file = files[0]; const reader = new FileReader(); reader.onload = (e) => { try { const data = JSON.parse(e.target.result); if (confirm('这将覆盖所有当前数据，确定要从文件恢复吗？')) { Object.keys(data).forEach(key => { if (key.startsWith('os_')) { localStorage.setItem(key, data[key]); } }); alert('数据恢复成功！应用即将刷新。'); location.reload(); } } catch (err) { alert('导入失败：文件格式错误或已损坏。'); } }; reader.readAsText(file); }
     function escapeHTML(str) { if (!str) return ''; return str.replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m]));}
     function formatAIResponse(text) { return escapeHTML(text).replace(/\n/g, '<br>'); }
     
-    // --- Global & API Settings ---
     function saveMasterPrompt() { localStorage.setItem('os_master_prompt', document.getElementById('master-prompt-input').value); alert('全局指令已保存'); }
     function loadMasterPrompt() { document.getElementById('master-prompt-input').value = localStorage.getItem('os_master_prompt') || ''; }
-    async function fetchModels() { const url = (document.getElementById('cfg-url').value || "https://api.openai.com/v1").replace(/\/$/,""); const key = document.getElementById('cfg-key').value; const btn = document.getElementById('btn-fetch'); if(!key) return alert('请输入 API Key'); btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 拉取中...'; try { const res = await fetch(url+'/models', {headers:{'Authorization':`Bearer ${key}`}}); const data = await res.json(); const models = data.data || data; if (!Array.isArray(models)) { const errorMsg = data.error ? data.error.message : JSON.stringify(data); throw new Error(`API未返回有效的模型列表。服务器响应: ${errorMsg}`); } const sel = document.getElementById('cfg-model'); sel.innerHTML = ''; models.forEach(m => sel.innerHTML += `<option value="${m.id}">${m.id}</option>`); alert(`成功获取 ${models.length} 个模型！`); } catch(e) { alert('拉取失败: ' + e.message); } finally { btn.disabled = false; btn.innerHTML = '<i class="fas fa-sync"></i> 拉取模型列表'; } }
+    async function fetchModels() { const url = (document.getElementById('cfg-url').value || "https://api.openai.com/v1").replace(/\/$/,""); const key = document.getElementById('cfg-key').value; const btn = document.getElementById('btn-fetch'); if(!key) return alert('请输入 API Key'); btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 拉取中...'; try { const res = await fetch(url+'/models', {headers:{'Authorization':`Bearer ${key}`}}); const data = await res.json(); const models = data.data || data; if (!Array.isArray(models)) { throw new Error('API未返回有效的模型列表'); } const sel = document.getElementById('cfg-model'); sel.innerHTML = ''; models.forEach(m => sel.innerHTML += `<option value="${m.id}">${m.id}</option>`); alert(`成功获取 ${models.length} 个模型！`); } catch(e) { alert('拉取失败: ' + e.message); } finally { btn.disabled = false; btn.innerHTML = '<i class="fas fa-sync"></i> 拉取模型列表'; } }
     function saveConfig() { localStorage.setItem('os_url', document.getElementById('cfg-url').value); localStorage.setItem('os_key', document.getElementById('cfg-key').value); localStorage.setItem('os_model', document.getElementById('cfg-model').value); alert('API 配置已保存'); }
     function loadConfig() { document.getElementById('cfg-url').value = localStorage.getItem('os_url') || ''; document.getElementById('cfg-key').value = localStorage.getItem('os_key') || ''; const savedModel = localStorage.getItem('os_model'); if(savedModel) document.getElementById('cfg-model').innerHTML = `<option>${savedModel}</option>`; }
     
-    // --- Character App ---
-    function openCharForm(char = null) { const modal = document.getElementById('char-form-modal'); const idInput = document.getElementById('char-form-id'); const nameInput = document.getElementById('char-form-name'); const descInput = document.getElementById('char-form-desc'); const title = document.getElementById('char-form-title'); if (char) { title.innerText = '编辑角色'; idInput.value = char.id; nameInput.value = char.name; descInput.value = char.desc; } else { title.innerText = '新建角色'; idInput.value = ''; nameInput.value = ''; descInput.value = ''; } modal.style.display = 'block'; }
-    function closeCharForm() { document.getElementById('char-form-modal').style.display = 'none'; }
-    function saveChar() { const id = document.getElementById('char-form-id').value; const name = document.getElementById('char-form-name').value.trim(); if (!name) return alert('角色名不能为空'); const desc = document.getElementById('char-form-desc').value.trim(); let roles = JSON.parse(localStorage.getItem('os_chars') || '[]'); if (id) { roles = roles.map(role => role.id == id ? { ...role, name, desc } : role ); } else { roles.push({ id: Date.now(), name, desc }); } localStorage.setItem('os_chars', JSON.stringify(roles)); renderCharList(); closeCharForm(); }
-    function renderCharList() { const div = document.getElementById('char-list'); if (!div) return; div.innerHTML = ''; JSON.parse(localStorage.getItem('os_chars')||'[]').forEach(r => { div.innerHTML += `<div class="card" style="display:flex; justify-content:space-between; align-items:center;"><div><b>${r.name}</b><br><small>${r.desc}</small></div><i class="fas fa-edit" style="cursor:pointer; color:var(--accent-color);" onclick='editChar(${r.id})'></i></div>`; }); }
-    function editChar(id) { const roles = JSON.parse(localStorage.getItem('os_chars') || '[]'); const char = roles.find(r => r.id === id); if (char) openCharForm(char); }
+    // --- UPDATED Character App Logic ---
+    function openCharForm(char = null) { 
+        const modal = document.getElementById('char-form-full'); 
+        const idInput = document.getElementById('char-form-id'); 
+        const nameInput = document.getElementById('char-form-name'); 
+        const descInput = document.getElementById('char-form-desc'); 
+        const title = document.getElementById('char-form-title'); 
+        const delBtn = document.getElementById('btn-delete-char');
+        
+        if (char) { 
+            title.innerText = '编辑角色'; 
+            idInput.value = char.id; 
+            nameInput.value = char.name; 
+            descInput.value = char.desc; 
+            delBtn.style.display = 'flex'; // Show delete button
+        } else { 
+            title.innerText = '新建角色'; 
+            idInput.value = ''; 
+            nameInput.value = ''; 
+            descInput.value = ''; 
+            delBtn.style.display = 'none'; // Hide delete button
+        } 
+        modal.classList.add('show'); 
+    }
     
-        // --- I-Ching Divination App ---
+    function closeCharForm() { document.getElementById('char-form-full').classList.remove('show'); }
+    
+    function saveChar() { 
+        const id = document.getElementById('char-form-id').value; 
+        const name = document.getElementById('char-form-name').value.trim(); 
+        if (!name) return alert('角色名不能为空'); 
+        const desc = document.getElementById('char-form-desc').value.trim(); 
+        let roles = JSON.parse(localStorage.getItem('os_chars') || '[]'); 
+        if (id) { 
+            roles = roles.map(role => role.id == id ? { ...role, name, desc } : role ); 
+        } else { 
+            roles.push({ id: Date.now(), name, desc }); 
+        } 
+        localStorage.setItem('os_chars', JSON.stringify(roles)); 
+        renderCharList(); 
+        closeCharForm(); 
+    }
+
+    function deleteChar() {
+        const id = document.getElementById('char-form-id').value;
+        if (!id) return;
+        if (confirm("确定要删除这个角色吗？此操作无法撤销。")) {
+            let roles = JSON.parse(localStorage.getItem('os_chars') || '[]');
+            roles = roles.filter(role => role.id != id);
+            localStorage.setItem('os_chars', JSON.stringify(roles));
+            renderCharList();
+            closeCharForm();
+        }
+    }
+    
+    function renderCharList() { 
+        const div = document.getElementById('char-list'); 
+        if (!div) return; 
+        div.innerHTML = ''; 
+        JSON.parse(localStorage.getItem('os_chars')||'[]').forEach(r => { 
+            div.innerHTML += `
+            <div class="char-card-item" onclick='editChar(${r.id})'>
+                <div class="char-avatar"><i class="fas fa-user"></i></div>
+                <div class="char-name-display">${escapeHTML(r.name)}</div>
+                <div class="char-desc-preview">${escapeHTML(r.desc)}</div>
+            </div>`; 
+        }); 
+    }
+    
+    function editChar(id) { const roles = JSON.parse(localStorage.getItem('os_chars') || '[]'); const char = roles.find(r => r.id === id); if (char) openCharForm(char); }    // --- Yijing Logic (Unchanged) ---
     function showYijingMenu() { document.getElementById('yijing-menu').style.display = 'grid'; document.getElementById('yijing-input-2').style.display = 'none'; document.getElementById('yijing-input-3').style.display = 'none'; }
     function showNumberInput() { document.getElementById('yijing-menu').style.display = 'none'; document.getElementById('yijing-input-2').style.display = 'block'; }
     function showThreeNumberInput() { document.getElementById('yijing-menu').style.display = 'none'; document.getElementById('yijing-input-3').style.display = 'block'; }
     
     function processDivination(type, q) {
         let up, low, dong, methodDesc;
-        if (type === 'random') {
-            const n1 = Math.floor(Math.random() * 900) + 100; const n2 = Math.floor(Math.random() * 900) + 100; up = n1 % 8 || 8; low = n2 % 8 || 8; dong = (n1 + n2) % 6 || 6; methodDesc = `随机数: ${n1},${n2}`;
-        } else if (type === 'time') {
-            const now = new Date(); const year = now.getFullYear(); const month = now.getMonth() + 1; const day = now.getDate(); const hour = now.getHours(); const numUpper = year + month + day; const numLower = numUpper + hour; up = numUpper % 8 || 8; low = numLower % 8 || 8; dong = (numUpper + numLower) % 6 || 6; methodDesc = `时间: ${month}月${day}日${hour}时`;
-        }
+        if (type === 'random') { const n1 = Math.floor(Math.random() * 900) + 100; const n2 = Math.floor(Math.random() * 900) + 100; up = n1 % 8 || 8; low = n2 % 8 || 8; dong = (n1 + n2) % 6 || 6; methodDesc = `随机数: ${n1},${n2}`; } 
+        else if (type === 'time') { const now = new Date(); const year = now.getFullYear(); const month = now.getMonth() + 1; const day = now.getDate(); const hour = now.getHours(); const numUpper = year + month + day; const numLower = numUpper + hour; up = numUpper % 8 || 8; low = numLower % 8 || 8; dong = (numUpper + numLower) % 6 || 6; methodDesc = `时间: ${month}月${day}日${hour}时`; }
         const rec = {id:Date.now(), time:new Date().toLocaleString(), q, up, low, dong, methodDesc, note:"", aiInterpret:"", aiEvaluate:""}; const list = JSON.parse(localStorage.getItem('os_yijing')||'[]'); list.unshift(rec); localStorage.setItem('os_yijing', JSON.stringify(list)); showYijingMenu(); renderYijingHistory(); openDetail(rec.id);
     }
-
-    function startDivination(type) { 
-        if (type === 'number2') {
-            const q = document.getElementById('yijing-q-2').value.trim(); const n1 = parseInt(document.getElementById('yijing-n1').value); const n2 = parseInt(document.getElementById('yijing-n2').value); if (!q) return alert('请填写所占何事'); if (!n1 || !n2) return alert('请填写数字'); const up = n1 % 8 || 8; const low = n2 % 8 || 8; const dong = (n1 + n2) % 6 || 6; const methodDesc = `数: ${n1},${n2}`; const rec = {id:Date.now(), time:new Date().toLocaleString(), q, up, low, dong, methodDesc, note:"", aiInterpret:"", aiEvaluate:""}; const list = JSON.parse(localStorage.getItem('os_yijing')||'[]'); list.unshift(rec); localStorage.setItem('os_yijing', JSON.stringify(list)); showYijingMenu(); renderYijingHistory(); openDetail(rec.id); 
-        } else if (type === 'number3') {
-            const q = document.getElementById('yijing-q-3').value.trim(); const n1 = parseInt(document.getElementById('yijing-n3-1').value); const n2 = parseInt(document.getElementById('yijing-n3-2').value); const n3 = parseInt(document.getElementById('yijing-n3-3').value); if (!q) return alert('请填写所占何事'); if (!n1 || !n2 || !n3) return alert('请填写所有三个数字'); const up = n1 % 8 || 8; const low = n2 % 8 || 8; const dong = n3 % 6 || 6; const methodDesc = `三数: ${n1},${n2},${n3}`; const rec = {id:Date.now(), time:new Date().toLocaleString(), q, up, low, dong, methodDesc, note:"", aiInterpret:"", aiEvaluate:""}; const list = JSON.parse(localStorage.getItem('os_yijing')||'[]'); list.unshift(rec); localStorage.setItem('os_yijing', JSON.stringify(list)); showYijingMenu(); renderYijingHistory(); openDetail(rec.id); 
-        } else if (type === 'random') { openCustomPrompt("【随机起卦】心中所占何事？", "例如：今日运势...", (val) => { if (val) processDivination('random', val); }); } else if (type === 'time') { openCustomPrompt("【时间起卦】心中所占何事？", "不填则默认为问时", (val) => { if (val !== null) { const q = val === "" ? `问时: ${new Date().toLocaleString()}` : val; processDivination('time', q); } }); }
-    }
+    function startDivination(type) { if (type === 'number2') { const q = document.getElementById('yijing-q-2').value.trim(); const n1 = parseInt(document.getElementById('yijing-n1').value); const n2 = parseInt(document.getElementById('yijing-n2').value); if (!q) return alert('请填写所占何事'); if (!n1 || !n2) return alert('请填写数字'); const up = n1 % 8 || 8; const low = n2 % 8 || 8; const dong = (n1 + n2) % 6 || 6; const methodDesc = `数: ${n1},${n2}`; const rec = {id:Date.now(), time:new Date().toLocaleString(), q, up, low, dong, methodDesc, note:"", aiInterpret:"", aiEvaluate:""}; const list = JSON.parse(localStorage.getItem('os_yijing')||'[]'); list.unshift(rec); localStorage.setItem('os_yijing', JSON.stringify(list)); showYijingMenu(); renderYijingHistory(); openDetail(rec.id); } else if (type === 'number3') { const q = document.getElementById('yijing-q-3').value.trim(); const n1 = parseInt(document.getElementById('yijing-n3-1').value); const n2 = parseInt(document.getElementById('yijing-n3-2').value); const n3 = parseInt(document.getElementById('yijing-n3-3').value); if (!q) return alert('请填写所占何事'); if (!n1 || !n2 || !n3) return alert('请填写所有三个数字'); const up = n1 % 8 || 8; const low = n2 % 8 || 8; const dong = n3 % 6 || 6; const methodDesc = `三数: ${n1},${n2},${n3}`; const rec = {id:Date.now(), time:new Date().toLocaleString(), q, up, low, dong, methodDesc, note:"", aiInterpret:"", aiEvaluate:""}; const list = JSON.parse(localStorage.getItem('os_yijing')||'[]'); list.unshift(rec); localStorage.setItem('os_yijing', JSON.stringify(list)); showYijingMenu(); renderYijingHistory(); openDetail(rec.id); } else if (type === 'random') { openCustomPrompt("【随机起卦】心中所占何事？", "例如：今日运势...", (val) => { if (val) processDivination('random', val); }); } else if (type === 'time') { openCustomPrompt("【时间起卦】心中所占何事？", "不填则默认为问时", (val) => { if (val !== null) { const q = val === "" ? `问时: ${new Date().toLocaleString()}` : val; processDivination('time', q); } }); } }
     function renderGuaResult(content, type) { if (!content) return ''; return `<button class="toggle-btn" onclick="toggleCollapsible(this)"><span>${type === 'interpret' ? '解卦分析' : 'AI 评价'}</span><i class="fas fa-chevron-down"></i></button><div class="content expanded">${formatAIResponse(content)}</div>`; }
     function toggleCollapsible(btn) { const content = btn.nextElementSibling; const icon = btn.querySelector('.fas'); content.classList.toggle('expanded'); if (content.classList.contains('expanded')) { icon.style.transform = "rotate(0deg)"; } else { icon.style.transform = "rotate(-90deg)"; } }
     function openDetail(id) { currentYijingId = id; const rec = JSON.parse(localStorage.getItem('os_yijing')).find(r => r.id===id); document.getElementById('yijing-detail').style.display = 'flex'; document.getElementById('yijing-home').style.display = 'none'; document.getElementById('detail-q').innerText = rec.q; document.getElementById('detail-meta').innerText = `${rec.methodDesc} | 动: ${rec.dong}`; const sel = document.getElementById('detail-role'); sel.innerHTML = '<option value="">默认AI</option>'; JSON.parse(localStorage.getItem('os_chars')||'[]').forEach(r => sel.innerHTML += `<option value='${JSON.stringify(r)}'>${r.name}</option>`); document.getElementById('detail-note').value = rec.note || ''; document.getElementById('ai-interpret-res').innerHTML = renderGuaResult(rec.aiInterpret, 'interpret'); document.getElementById('ai-evaluate-res').innerHTML = renderGuaResult(rec.aiEvaluate, 'evaluate'); drawGua(rec.up, rec.low, rec.dong); }
     function closeDetail() { document.getElementById('yijing-detail').style.display='none'; document.getElementById('yijing-home').style.display='block'; currentYijingId=null; }
-    
-    function drawGua(upVal, lowVal, dongIdx) {
-        const benFull = [...trigramBits[upVal], ...trigramBits[lowVal]];
-        const huUpBits = [benFull[1], benFull[2], benFull[3]], huLowBits = [benFull[2], benFull[3], benFull[4]];
-        const huUpVal = findTrigramVal(huUpBits), huLowVal = findTrigramVal(huLowBits);
-        const changeBitIdx = 6 - dongIdx;
-        const bianFull = [...benFull];
-        bianFull[changeBitIdx] = 1 - bianFull[changeBitIdx];
-        const bianUpVal = findTrigramVal(bianFull.slice(0,3)), bianLowVal = findTrigramVal(bianFull.slice(3,6));
-        const benName = HEXAGRAM_DATA[`${upVal}_${lowVal}`] || '未知';
-                const huName = HEXAGRAM_DATA[`${huUpVal}_${huLowVal}`] || '未知';
-        const bianName = HEXAGRAM_DATA[`${bianUpVal}_${bianLowVal}`] || '未知';
-        document.getElementById('detail-gua-area').innerHTML = `
-            <div class="gua-visual-row">
-                <div class="gua-col" onclick="promptYijingCharSelection('${benName}')">
-                    <div class="gua-title">本卦 (动)</div>
-                    <div class="gua-lines-box">${renderLinesHtml(benFull, dongIdx, benName)}</div>
-                    <div class="gua-name">${benName}</div>
-                </div>
-                <div class="gua-col" onclick="promptYijingCharSelection('${huName}')">
-                    <div class="gua-title">互卦</div>
-                    <div class="gua-lines-box">${renderLinesHtml([...huUpBits,...huLowBits], -1, "")}</div>
-                    <div class="gua-name">${huName}</div>
-                </div>
-                <div class="gua-col" onclick="promptYijingCharSelection('${bianName}')">
-                    <div class="gua-title">变卦</div>
-                    <div class="gua-lines-box">${renderLinesHtml(bianFull, 0, "", true)}</div>
-                    <div class="gua-name" style="color:#ff3b30">${bianName}</div>
-                </div>
-            </div>`;
-    }
-
-    function renderLinesHtml(bits, moveLine, guaName, isBianGua = false) { 
-        let html = ''; 
-        bits.forEach((bit, i) => { 
-            const lineNum = 6 - i; 
-            const isMoving = (lineNum === moveLine); 
-            const type = bit === 1 ? 'yang' : 'yin'; 
-            let moveClass = '';
-            let clickAttr = '';
-            if (isMoving && !isBianGua) {
-                moveClass = 'moving';
-                clickAttr = `onclick="event.stopPropagation(); openYaoModal('${guaName}', ${lineNum}, ${bit})"`;
-            }
-            const content = bit === 1 ? '' : '<span></span><span></span>'; 
-            html += `<div class="line ${type} ${moveClass}" ${clickAttr}>${content}</div>`; 
-        }); 
-        return html; 
-    }
-
+    function drawGua(upVal, lowVal, dongIdx) { const benFull = [...trigramBits[upVal], ...trigramBits[lowVal]]; const huUpBits = [benFull[1], benFull[2], benFull[3]], huLowBits = [benFull[2], benFull[3], benFull[4]]; const huUpVal = findTrigramVal(huUpBits), huLowVal = findTrigramVal(huLowBits); const changeBitIdx = 6 - dongIdx; const bianFull = [...benFull]; bianFull[changeBitIdx] = 1 - bianFull[changeBitIdx]; const bianUpVal = findTrigramVal(bianFull.slice(0,3)), bianLowVal = findTrigramVal(bianFull.slice(3,6)); const benName = HEXAGRAM_DATA[`${upVal}_${lowVal}`] || '未知'; const huName = HEXAGRAM_DATA[`${huUpVal}_${huLowVal}`] || '未知'; const bianName = HEXAGRAM_DATA[`${bianUpVal}_${bianLowVal}`] || '未知'; document.getElementById('detail-gua-area').innerHTML = `<div class="gua-visual-row"><div class="gua-col" onclick="promptYijingCharSelection('${benName}')"><div class="gua-title">本卦 (动)</div><div class="gua-lines-box">${renderLinesHtml(benFull, dongIdx, benName)}</div><div class="gua-name">${benName}</div></div><div class="gua-col" onclick="promptYijingCharSelection('${huName}')"><div class="gua-title">互卦</div><div class="gua-lines-box">${renderLinesHtml([...huUpBits,...huLowBits], -1, "")}</div><div class="gua-name">${huName}</div></div><div class="gua-col" onclick="promptYijingCharSelection('${bianName}')"><div class="gua-title">变卦</div><div class="gua-lines-box">${renderLinesHtml(bianFull, 0, "", true)}</div><div class="gua-name" style="color:#ff3b30">${bianName}</div></div></div>`; }
+    function renderLinesHtml(bits, moveLine, guaName, isBianGua = false) { let html = ''; bits.forEach((bit, i) => { const lineNum = 6 - i; const isMoving = (lineNum === moveLine); const type = bit === 1 ? 'yang' : 'yin'; let moveClass = ''; let clickAttr = ''; if (isMoving && !isBianGua) { moveClass = 'moving'; clickAttr = `onclick="event.stopPropagation(); openYaoModal('${guaName}', ${lineNum}, ${bit})"`; } const content = bit === 1 ? '' : '<span></span><span></span>'; html += `<div class="line ${type} ${moveClass}" ${clickAttr}>${content}</div>`; }); return html; }
     function findTrigramVal(arr) { const str = arr.join(''); for(let k in trigramBits) { if(trigramBits[k].join('') === str && k!=='0') return parseInt(k); } return 8; }
     function toggleYijingEditMode() { isYijingEditMode = !isYijingEditMode; document.getElementById('yijing-batch-toolbar').style.display = isYijingEditMode ? 'flex' : 'none'; document.getElementById('btn-edit-yijing').innerText = isYijingEditMode ? '完成' : '管理'; renderYijingHistory(); }
     function renderYijingHistory() { const div = document.getElementById('yijing-history'); div.innerHTML = ''; const data = JSON.parse(localStorage.getItem('os_yijing')||'[]'); if(data.length===0) { div.innerHTML = '<div style="text-align:center;color:var(--text-sub);padding:10px;">暂无记录</div>'; return; } data.forEach(item => { if (isYijingEditMode) { div.innerHTML += `<div class="check-wrap"><input type="checkbox" class="yijing-check" value="${item.id}"><div class="check-content">${item.q} <br><small>${item.time.split(' ')[0]}</small></div></div>`; } else { div.innerHTML += `<div onclick="openDetail(${item.id})" style="padding:12px 0; border-bottom:1px solid var(--border-color);cursor:pointer;">${item.q} <small style="float:right;"><i class="fas fa-chevron-right"></i></small></div>`; } }); }
     function deleteSelectedYijing() { const checks = document.querySelectorAll('.yijing-check:checked'); if (checks.length === 0) return alert('请先选择要删除的记录'); if (confirm(`确定要删除选中的 ${checks.length} 条记录吗？`)) { const idsToDelete = Array.from(checks).map(c => parseInt(c.value)); let history = JSON.parse(localStorage.getItem('os_yijing') || '[]'); history = history.filter(item => !idsToDelete.includes(item.id)); localStorage.setItem('os_yijing', JSON.stringify(history)); toggleYijingEditMode(); } }
     async function callAI(mode) { const key = localStorage.getItem('os_key'); if(!key) return alert('请配置Key'); const btn = mode==='interpret' ? document.getElementById('btn-interpret') : document.getElementById('btn-evaluate'); const targetDiv = mode==='interpret' ? document.getElementById('ai-interpret-res') : document.getElementById('ai-evaluate-res'); btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 思考中...'; targetDiv.style.display = 'block'; targetDiv.innerHTML = "正在连接AI，请稍候..."; try { const list = JSON.parse(localStorage.getItem('os_yijing')); const rec = list.find(r=>r.id===currentYijingId); const url = (localStorage.getItem('os_url') || "https://api.openai.com/v1").replace(/\/$/,''); const model = localStorage.getItem('os_model') || "gpt-3.5-turbo"; const benFull=[...trigramBits[rec.up],...trigramBits[rec.low]]; const huUpBits=[benFull[1],benFull[2],benFull[3]],huLowBits=[benFull[2],benFull[3],benFull[4]]; const huUpVal=findTrigramVal(huUpBits),huLowVal=findTrigramVal(huLowBits); const changeBitIdx=6-rec.dong; const bianFull=[...benFull];bianFull[changeBitIdx]=1-bianFull[changeBitIdx]; const bianUpVal=findTrigramVal(bianFull.slice(0,3)),bianLowVal=findTrigramVal(bianFull.slice(3,6)); const benName=HEXAGRAM_DATA[`${rec.up}_${rec.low}`],huName=HEXAGRAM_DATA[`${huUpVal}_${huLowVal}`],bianName=HEXAGRAM_DATA[`${bianUpVal}_${bianLowVal}`]; let userPrompt; const promptHeader=`【梅花易数排盘结果】\n所占之事：${rec.q}\n起卦方式：${rec.methodDesc || '数字起卦'}\n本卦：${benName}(第 ${rec.dong} 爻动)\n互卦：${huName}\n变卦：${bianName}\n\n`; if(mode==='interpret'){ userPrompt=promptHeader+"请根据以上完整的卦象信息为我详细解读。"; }else{ const note=document.getElementById('detail-note').value; if(!note)throw new Error("请先填写您的笔记。"); userPrompt=promptHeader+`【我的笔记】\n"${note}"\n\n请作为老师，基于完整的卦象信息，点评我的笔记是否准确？`; } const masterPrompt = localStorage.getItem('os_master_prompt') || ''; let rolePrompt = "你是一位精通梅花易数的国学大师。"; const roleJSON=document.getElementById('detail-role').value; if(roleJSON){ const r=JSON.parse(roleJSON); rolePrompt=`请严格扮演以下角色：\n【角色名】: ${r.name}\n【角色设定】: ${r.desc}\n用这个角色的口吻和知识背景来回答。`; } const finalSystemPrompt = masterPrompt ? `${masterPrompt}\n\n---\n\n${rolePrompt}` : rolePrompt; const res=await fetch(url+'/chat/completions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':`Bearer ${key}`},body:JSON.stringify({model,messages:[{role:"system",content:finalSystemPrompt},{role:"user",content:userPrompt}]})}); if(!res.ok)throw new Error(`API 请求失败: ${res.status}`); const data=await res.json(); if(data.error)throw new Error(data.error.message); const reply=data.choices[0].message.content; targetDiv.innerHTML = renderGuaResult(reply, mode); const idx=list.findIndex(r=>r.id===currentYijingId); if(mode==='interpret')list[idx].aiInterpret=reply; else list[idx].aiEvaluate=reply; localStorage.setItem('os_yijing',JSON.stringify(list));} catch(e){ targetDiv.innerText="请求出错："+e.message; } finally { btn.disabled=false; btn.innerHTML=mode==='interpret'?'请大师指点':'让 AI 评价'; }}
     function saveNote() { const list=JSON.parse(localStorage.getItem('os_yijing')); const idx=list.findIndex(r=>r.id===currentYijingId); list[idx].note = document.getElementById('detail-note').value; localStorage.setItem('os_yijing', JSON.stringify(list)); alert('笔记已保存'); }
-    
-    function openYaoModal(guaName, lineNum, bitVal) {
-        const modal = document.getElementById('yao-detail-overlay');
-        const titleEl = document.getElementById('yao-detail-title');
-        const subEl = document.getElementById('yao-detail-subtitle');
-        const contentEl = document.getElementById('yao-detail-content');
-        const positionNames = ["", "初", "二", "三", "四", "五", "上"];
-        const yinYang = bitVal === 1 ? "九" : "六";
-        let yaoName = "";
-        if (lineNum === 1 || lineNum === 6) { yaoName = `${positionNames[lineNum]}${yinYang}`; } else { yaoName = `${yinYang}${positionNames[lineNum]}`; }
-        titleEl.innerText = `${guaName}`;
-        subEl.innerText = `【${yaoName}】 动爻详解`;
-        contentEl.innerHTML = `<div style="text-align:center; color:var(--text-sub); margin-top:30px;"><i class="fas fa-book-reader" style="font-size:24px; margin-bottom:10px;"></i><br>点击下方按钮请求 AI 解析<br><small>获取《${guaName}》${yaoName} 的爻辞与翻译</small></div>`;
-        currentYaoRequest = { guaName, yaoName };
-        modal.classList.add('show');
-    }
-
+    function openYaoModal(guaName, lineNum, bitVal) { const modal = document.getElementById('yao-detail-overlay'); const titleEl = document.getElementById('yao-detail-title'); const subEl = document.getElementById('yao-detail-subtitle'); const contentEl = document.getElementById('yao-detail-content'); const positionNames = ["", "初", "二", "三", "四", "五", "上"]; const yinYang = bitVal === 1 ? "九" : "六"; let yaoName = ""; if (lineNum === 1 || lineNum === 6) { yaoName = `${positionNames[lineNum]}${yinYang}`; } else { yaoName = `${yinYang}${positionNames[lineNum]}`; } titleEl.innerText = `${guaName}`; subEl.innerText = `【${yaoName}】 动爻详解`; contentEl.innerHTML = `<div style="text-align:center; color:var(--text-sub); margin-top:30px;"><i class="fas fa-book-reader" style="font-size:24px; margin-bottom:10px;"></i><br>点击下方按钮请求 AI 解析<br><small>获取《${guaName}》${yaoName} 的爻辞与翻译</small></div>`; currentYaoRequest = { guaName, yaoName }; modal.classList.add('show'); }
     function closeYaoDetail() { document.getElementById('yao-detail-overlay').classList.remove('show'); currentYaoRequest = null; }
+    async function fetchYaoText() { if (!currentYaoRequest) return; const { guaName, yaoName } = currentYaoRequest; const contentEl = document.getElementById('yao-detail-content'); const btn = document.getElementById('btn-fetch-yao'); btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 解析中...'; contentEl.innerHTML = '<div style="text-align:center; margin-top:20px;">正在查阅古籍...</div>'; const key = localStorage.getItem('os_key'); if (!key) { alert('请先在设置中配置 API Key'); btn.disabled = false; btn.innerHTML = '📜 AI 解析此爻'; return; } try { const url = (localStorage.getItem('os_url') || "https://api.openai.com/v1").replace(/\/$/,''); const model = localStorage.getItem('os_model') || "gpt-3.5-turbo"; const prompt = `请直接给出易经中【${guaName}】的【${yaoName}】的：\n1. 爻辞原文\n2. 象曰原文\n3. 简练的白话翻译\n4. 对占卜的简短启示（吉凶建议）。\n\n请用HTML格式返回，使用<b>加粗</b>原文，分段显示，不要啰嗦。`; const res = await fetch(url+'/chat/completions', { method: 'POST', headers: {'Content-Type':'application/json', 'Authorization':`Bearer ${key}`}, body: JSON.stringify({ model: model, messages: [{role: "user", content: prompt}] }) }); if (!res.ok) throw new Error("网络请求失败: " + res.status); const data = await res.json(); const text = data.choices[0].message.content; contentEl.innerHTML = text.replace(/\n/g, '<br>'); } catch (e) { contentEl.innerText = "解析失败：" + e.message; } finally { btn.disabled = false; btn.innerHTML = '📜 重新解析'; } }
+
+    function promptYijingCharSelection(guaName) { currentGuaForSelection = guaName; const modal = document.getElementById('yijing-char-select-overlay'); const listDiv = document.getElementById('yijing-char-list'); listDiv.innerHTML = ''; listDiv.innerHTML += `<div class="modal-list-item" onclick="selectYijingChar(null)"><div>默认AI (灵犀)</div><small>友好、轻松的易经伙伴</small></div>`; const chars = JSON.parse(localStorage.getItem('os_chars') || '[]'); chars.forEach(char => { listDiv.innerHTML += `<div class="modal-list-item" onclick="selectYijingChar(${char.id})"><div>${escapeHTML(char.name)}</div><small>${escapeHTML(char.desc.substring(0, 25))}${char.desc.length > 25 ? '...' : ''}</small></div>`; }); modal.classList.add('show'); }
+    function selectYijingChar(charId) { let selectedChar = null; if (charId !== null) { const chars = JSON.parse(localStorage.getItem('os_chars') || '[]'); selectedChar = chars.find(c => c.id === charId); } document.getElementById('yijing-char-select-overlay').classList.remove('show'); openYijingChat(currentGuaForSelection, selectedChar); }
+    function openYijingChat(guaName, character = null) { currentYijingChatInfo = { guaName, character }; yijingChatHistory = []; const charName = character ? character.name : '灵犀'; document.getElementById('yijing-chat-title').innerText = `与 ${charName} 探讨【${guaName}】`; document.getElementById('app-yijing-chat').style.display = 'flex'; const feed = document.getElementById('yijing-chat-feed'); feed.innerHTML = ''; const initialMessages = [`你好呀！我是${charName}，我们来聊聊「${guaName}」这个卦吧！`, "有什么想知道的，随时问我！"]; let delay = 500; initialMessages.forEach(msg => { setTimeout(() => { const bubble = createYijingChatBubble('ai', msg); yijingChatHistory.push({role: 'assistant', content: msg}); }, delay); delay += 800; }); }
+    function closeYijingChat() { document.getElementById('app-yijing-chat').style.display = 'none'; currentYijingChatInfo = {}; yijingChatHistory = []; }
+    function createYijingChatBubble(type, text = '') { const feed = document.getElementById('yijing-chat-feed'); const div = document.createElement('div'); div.className = `chat-bubble ${type}`; if (text) { div.innerHTML = formatAIResponse(text); } feed.appendChild(div); feed.scrollTop = feed.scrollHeight; return div; }
+    async function sendYijingChatMessage() { if(isAIResponding) return; const input = document.getElementById('yijing-chat-input'); const text = input.value.trim(); if(!text) return; createYijingChatBubble('user', text); yijingChatHistory.push({role: 'user', content: text}); input.value = ''; triggerYijingAIStream(); }
+    async function triggerYijingAIStream() { const key = localStorage.getItem('os_key'); if(!key) { createYijingChatBubble('ai', '抱歉，需要先在设置里配置API Key才能聊天哦。'); return; } isAIResponding = true; document.getElementById('btn-yijing-chat-send').disabled = true; const thinkingBubble = createYijingChatBubble('ai thinking', '正在思考...'); try { const { guaName, character } = currentYijingChatInfo; let personaPrompt; if (character) { personaPrompt = `你正在扮演角色【${character.name}】。角色设定：${character.desc}。你的任务是以这个角色的口吻和性格，与用户轻松地探讨关于【${guaName}】卦的问题。`; } else { personaPrompt = `你是一个名叫“灵犀”的易经爱好者和朋友。你的任务是以轻松、友好、对话式的方式，解释用户关于【${guaName}】卦的问题。`; } const systemPrompt = `${personaPrompt} 【输出规则】: 1. **风格**: 像和朋友聊天一样，亲切自然，避免使用复杂的术语。 2. **短句**: 必须把你的回答分解成多个非常简短的句子或段落（每段1-3句话）。 3. **分隔符**: 在每条短消息的末尾，必须使用特殊分隔符 \`[MSG_BREAK]\`。 4. **数量**: 每次回答生成 1 到 10 条由 \`[MSG_BREAK]\` 分隔的短消息。 5. **禁止**: 不要输出任何 markdown 语法、列表或加粗。保持纯文本对话。`; const messages = [{role: "system", content: systemPrompt}, ...yijingChatHistory]; const url = (localStorage.getItem('os_url') || "https://api.openai.com/v1").replace(/\/$/,''); const model = localStorage.getItem('os_model') || "gpt-3.5-turbo"; const res = await fetch(url + '/chat/completions', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${key}` }, body: JSON.stringify({ model, messages, stream: true }) }); if (!res.ok) throw new Error(`API 请求失败: ${res.status}`); thinkingBubble.remove(); const reader = res.body.getReader(); const decoder = new TextDecoder("utf-8"); let fullReply = ""; while (true) { const { done, value } = await reader.read(); if (done) break; const chunk = decoder.decode(value, { stream: true }); const lines = chunk.split('\n'); for (const line of lines) { if (line.startsWith('data: ')) { const jsonStr = line.slice(6); if (jsonStr === '[DONE]') break; try { const json = JSON.parse(jsonStr); fullReply += json.choices[0].delta.content || ""; } catch (e) { } } } } const replyMessages = fullReply.split('[MSG_BREAK]').filter(m => m.trim() !== ''); function showMessage(index) { if (index >= replyMessages.length) { isAIResponding = false; document.getElementById('btn-yijing-chat-send').disabled = false; return; } const msgText = replyMessages[index].trim(); createYijingChatBubble('ai', msgText); yijingChatHistory.push({ role: 'assistant', content: msgText }); const delay = msgText.length < 20 ? 700 : 1200; setTimeout(() => showMessage(index + 1), delay); } showMessage(0); } catch (e) { thinkingBubble.remove(); createYijingChatBubble('ai', `哎呀，出错了: ${e.message}`); isAIResponding = false; document.getElementById('btn-yijing-chat-send').disabled = false; } }
     
-        async function fetchYaoText() {
-        if (!currentYaoRequest) return;
-        const { guaName, yaoName } = currentYaoRequest;
-        const contentEl = document.getElementById('yao-detail-content');
-        const btn = document.getElementById('btn-fetch-yao');
-        btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 解析中...';
-        contentEl.innerHTML = '<div style="text-align:center; margin-top:20px;">正在查阅古籍...</div>';
-        const key = localStorage.getItem('os_key');
-        if (!key) { alert('请先在设置中配置 API Key'); btn.disabled = false; btn.innerHTML = '📜 AI 解析此爻'; return; }
-        try {
-            const url = (localStorage.getItem('os_url') || "https://api.openai.com/v1").replace(/\/$/,'');
-            const model = localStorage.getItem('os_model') || "gpt-3.5-turbo";
-            const prompt = `请直接给出易经中【${guaName}】的【${yaoName}】的：\n1. 爻辞原文\n2. 象曰原文\n3. 简练的白话翻译\n4. 对占卜的简短启示（吉凶建议）。\n\n请用HTML格式返回，使用<b>加粗</b>原文，分段显示，不要啰嗦。`;
-            const res = await fetch(url+'/chat/completions', { method: 'POST', headers: {'Content-Type':'application/json', 'Authorization':`Bearer ${key}`}, body: JSON.stringify({ model: model, messages: [{role: "user", content: prompt}] }) });
-            if (!res.ok) throw new Error("网络请求失败: " + res.status);
-            const data = await res.json();
-            const text = data.choices[0].message.content;
-            contentEl.innerHTML = text.replace(/\n/g, '<br>');
-        } catch (e) {
-            contentEl.innerText = "解析失败：" + e.message;
-        } finally {
-            btn.disabled = false;
-            btn.innerHTML = '📜 重新解析';
-        }
-    }
-
-    // --- NEW: Yijing AI Character Selection & Chat ---
-
-    function promptYijingCharSelection(guaName) {
-        currentGuaForSelection = guaName;
-        const modal = document.getElementById('yijing-char-select-overlay');
-        const listDiv = document.getElementById('yijing-char-list');
-        listDiv.innerHTML = ''; 
-
-        // Add Default AI option
-        listDiv.innerHTML += `<div class="modal-list-item" onclick="selectYijingChar(null)"><div>默认AI (灵犀)</div><small>友好、轻松的易经伙伴</small></div>`;
-
-        // Add characters from storage
-        const chars = JSON.parse(localStorage.getItem('os_chars') || '[]');
-        chars.forEach(char => {
-            listDiv.innerHTML += `<div class="modal-list-item" onclick="selectYijingChar(${char.id})"><div>${escapeHTML(char.name)}</div><small>${escapeHTML(char.desc.substring(0, 25))}${char.desc.length > 25 ? '...' : ''}</small></div>`;
-        });
-        modal.classList.add('show');
-    }
-
-    function selectYijingChar(charId) {
-        let selectedChar = null;
-        if (charId !== null) {
-            const chars = JSON.parse(localStorage.getItem('os_chars') || '[]');
-            selectedChar = chars.find(c => c.id === charId);
-        }
-        document.getElementById('yijing-char-select-overlay').classList.remove('show');
-        openYijingChat(currentGuaForSelection, selectedChar);
-    }
-    
-    function openYijingChat(guaName, character = null) {
-        currentYijingChatInfo = { guaName, character };
-        yijingChatHistory = [];
-        const charName = character ? character.name : '灵犀';
-        document.getElementById('yijing-chat-title').innerText = `与 ${charName} 探讨【${guaName}】`;
-        document.getElementById('app-yijing-chat').style.display = 'flex';
-        const feed = document.getElementById('yijing-chat-feed');
-        feed.innerHTML = '';
-
-        const initialMessages = [
-            `你好呀！我是${charName}，我们来聊聊「${guaName}」这个卦吧！`,
-            "有什么想知道的，随时问我！"
-        ];
-        
-        let delay = 500;
-        initialMessages.forEach(msg => {
-            setTimeout(() => {
-                const bubble = createYijingChatBubble('ai', msg);
-                yijingChatHistory.push({role: 'assistant', content: msg});
-            }, delay);
-            delay += 800;
-        });
-    }
-
-    function closeYijingChat() {
-        document.getElementById('app-yijing-chat').style.display = 'none';
-        currentYijingChatInfo = {};
-        yijingChatHistory = [];
-    }
-
-    function createYijingChatBubble(type, text = '') {
-        const feed = document.getElementById('yijing-chat-feed');
-        const div = document.createElement('div');
-        div.className = `chat-bubble ${type}`;
-        if (text) {
-            div.innerHTML = formatAIResponse(text);
-        }
-        feed.appendChild(div);
-        feed.scrollTop = feed.scrollHeight;
-        return div;
-    }
-
-    async function sendYijingChatMessage() {
-        if(isAIResponding) return;
-        const input = document.getElementById('yijing-chat-input');
-        const text = input.value.trim();
-        if(!text) return;
-
-        createYijingChatBubble('user', text);
-        yijingChatHistory.push({role: 'user', content: text});
-        input.value = '';
-        triggerYijingAIStream();
-    }
-
-    async function triggerYijingAIStream() {
-        const key = localStorage.getItem('os_key');
-        if(!key) { createYijingChatBubble('ai', '抱歉，需要先在设置里配置API Key才能聊天哦。'); return; }
-        
-        isAIResponding = true;
-        document.getElementById('btn-yijing-chat-send').disabled = true;
-        const thinkingBubble = createYijingChatBubble('ai thinking', '正在思考...');
-
-        try {
-            const { guaName, character } = currentYijingChatInfo;
-            let personaPrompt;
-            if (character) {
-                personaPrompt = `你正在扮演角色【${character.name}】。角色设定：${character.desc}。你的任务是以这个角色的口吻和性格，与用户轻松地探讨关于【${guaName}】卦的问题。`;
-            } else {
-                personaPrompt = `你是一个名叫“灵犀”的易经爱好者和朋友。你的任务是以轻松、友好、对话式的方式，解释用户关于【${guaName}】卦的问题。`;
-            }
-
-            const systemPrompt = `${personaPrompt}
-            【输出规则】:
-            1. **风格**: 像和朋友聊天一样，亲切自然，避免使用复杂的术语。
-            2. **短句**: 必须把你的回答分解成多个非常简短的句子或段落（每段1-3句话）。
-            3. **分隔符**: 在每条短消息的末尾，必须使用特殊分隔符 \`[MSG_BREAK]\`。
-            4. **数量**: 每次回答生成 1 到 10 条由 \`[MSG_BREAK]\` 分隔的短消息。
-            5. **禁止**: 不要输出任何 markdown 语法、列表或加粗。保持纯文本对话。`;
-            
-            const messages = [{role: "system", content: systemPrompt}, ...yijingChatHistory];
-            const url = (localStorage.getItem('os_url') || "https://api.openai.com/v1").replace(/\/$/,'');
-            const model = localStorage.getItem('os_model') || "gpt-3.5-turbo";
-            
-            const res = await fetch(url + '/chat/completions', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${key}` }, body: JSON.stringify({ model, messages, stream: true }) });
-
-            if (!res.ok) throw new Error(`API 请求失败: ${res.status}`);
-            
-            thinkingBubble.remove();
-            const reader = res.body.getReader();
-            const decoder = new TextDecoder("utf-8");
-            let fullReply = "";
-
-            while (true) {
-                const { done, value } = await reader.read(); if (done) break;
-                const chunk = decoder.decode(value, { stream: true });
-                const lines = chunk.split('\n');
-                for (const line of lines) {
-                    if (line.startsWith('data: ')) {
-                        const jsonStr = line.slice(6); if (jsonStr === '[DONE]') break;
-                        try {
-                            const json = JSON.parse(jsonStr);
-                            fullReply += json.choices[0].delta.content || "";
-                        } catch (e) { /* ignore */ }
-                    }
-                }
-            }
-            
-                        const replyMessages = fullReply.split('[MSG_BREAK]').filter(m => m.trim() !== '');
-            
-            function showMessage(index) {
-                if (index >= replyMessages.length) {
-                    isAIResponding = false;
-                    document.getElementById('btn-yijing-chat-send').disabled = false;
-                    return;
-                }
-                const msgText = replyMessages[index].trim();
-                createYijingChatBubble('ai', msgText);
-                yijingChatHistory.push({ role: 'assistant', content: msgText });
-                const delay = msgText.length < 20 ? 700 : 1200;
-                setTimeout(() => showMessage(index + 1), delay);
-            }
-            showMessage(0);
-
-        } catch (e) {
-            thinkingBubble.remove();
-            createYijingChatBubble('ai', `哎呀，出错了: ${e.message}`);
-            isAIResponding = false;
-            document.getElementById('btn-yijing-chat-send').disabled = false;
-        }
-    }
-    
-    // --- Diary App (REFACTORED) ---
-    function updateDiaryRolePicker() { /* This is now handled by the getAIReply logic */ }
-    
-    function insertDiaryTimestamp() {
-        const input = document.getElementById('diary-input');
-        const now = new Date();
-        const timeString = `\n[${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')} ${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}] `;
-        input.value += timeString;
-        input.focus();
-    }
-
-    function saveUserDiary() {
-        const text = document.getElementById('diary-input').value.trim();
-        if(!text) return;
-        saveDiaryEntry('user', text, '我', new Date().toISOString().split('T')[0], Date.now());
-        document.getElementById('diary-input').value = '';
-        alert("日记已保存");
-    }
-
-    function saveDiaryEntry(type, text, name, date, id, replyTo = null) {
-        const list = JSON.parse(localStorage.getItem('os_diary')||'[]');
-        list.unshift({id, type, text, name, date, replyTo});
-        localStorage.setItem('os_diary', JSON.stringify(list));
-        renderDiaryFeed();
-    }
-
-    async function getAIReply(diaryId, btnElement) {
-        const key = localStorage.getItem('os_key');
-        if(!key) return alert('请先在设置中配置API Key');
-
-        const diaryList = JSON.parse(localStorage.getItem('os_diary')||'[]');
-        const diaryEntry = diaryList.find(d => d.id === diaryId);
-        if(!diaryEntry) return alert('找不到该日记条目');
-
-        const statusDiv = document.getElementById('diary-status');
-        btnElement.disabled = true;
-        btnElement.innerHTML = '<i class="fas fa-spinner fa-spin"></i> AI回应中...';
-        statusDiv.style.display = 'block';
-        statusDiv.innerText = '正在连接AI...';
-        
-        try {
-            openApp('app-chars'); // Temporarily open and close to get role picker
-            const roleSelect = document.createElement('select');
-            roleSelect.innerHTML = '<option value="">默认AI</option>';
-            JSON.parse(localStorage.getItem('os_chars')||'[]').forEach(r => {
-                roleSelect.innerHTML += `<option value='${JSON.stringify(r)}'>${r.name}</option>`;
-            });
-            closeApp('app-chars');
-            
-            // Now ask user to select a character
-            const selectedChar = await new Promise(resolve => {
-                const modal = document.getElementById('yijing-char-select-overlay');
-                const listDiv = document.getElementById('yijing-char-list');
-                const title = modal.querySelector('h4');
-                const subtitle = modal.querySelector('p');
-                const originalTitle = title.innerText;
-                const originalSubtitle = subtitle.innerHTML;
-
-                title.innerText = '选择回应身份';
-                subtitle.innerHTML = '选择一个角色来回应这篇日记。';
-                listDiv.innerHTML = '';
-                
-                const chars = JSON.parse(localStorage.getItem('os_chars') || '[]');
-                
-                const defaultOption = document.createElement('div');
-                defaultOption.className = 'modal-list-item';
-                defaultOption.innerHTML = `<div>默认AI (笔友)</div><small>温暖的日记笔友</small>`;
-                defaultOption.onclick = () => {
-                    modal.classList.remove('show');
-                    title.innerText = originalTitle;
-                    subtitle.innerHTML = originalSubtitle;
-                    resolve(null);
-                };
-                listDiv.appendChild(defaultOption);
-
-                chars.forEach(char => {
-                    const item = document.createElement('div');
-                    item.className = 'modal-list-item';
-                    item.innerHTML = `<div>${escapeHTML(char.name)}</div><small>${escapeHTML(char.desc.substring(0, 25))}${char.desc.length > 25 ? '...' : ''}</small>`;
-                    item.onclick = () => {
-                        modal.classList.remove('show');
-                        title.innerText = originalTitle;
-                        subtitle.innerHTML = originalSubtitle;
-                        resolve(char);
-                    };
-                    listDiv.appendChild(item);
-                });
-                modal.classList.add('show');
-            });
-            
-            let rolePrompt = "你是一位温暖的日记笔友。";
-            let aiName = "AI笔友";
-            if(selectedChar) {
-                rolePrompt = `请严格扮演以下角色来回复日记：\n【角色名】: ${selectedChar.name}\n【角色设定】: ${selectedChar.desc}`;
-                aiName = selectedChar.name;
-            }
-
-            const masterPrompt = localStorage.getItem('os_master_prompt') || '';
-            const finalSystemPrompt = masterPrompt ? `${masterPrompt}\n\n---\n\n${rolePrompt}` : rolePrompt;
-            const url = (localStorage.getItem('os_url') || "https://api.openai.com/v1").replace(/\/$/,'');
-            const model = localStorage.getItem('os_model') || "gpt-3.5-turbo";
-            statusDiv.innerText = `正在连接 ${model}...`;
-
-            const res = await fetch(url+'/chat/completions', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${key}` },
-                body: JSON.stringify({
-                    model,
-                    messages: [
-                        {role: "system", content: finalSystemPrompt},
-                        {role: "user", content: `这是我的一篇日记，请你以朋友的身份给我一些回应。\n\n---\n${diaryEntry.text}`}
-                    ]
-                })
-            });
-
-            if(!res.ok) throw new Error(`API Error: ${res.status}`);
-            const data = await res.json();
-            if(data.error) throw new Error(data.error.message);
-
-            saveDiaryEntry('ai', data.choices[0].message.content, aiName, new Date().toISOString().split('T')[0], Date.now(), diaryId);
-
-        } catch(e) {
-            alert('AI回复失败: ' + e.message);
-        } finally {
-            btnElement.disabled = false;
-            btnElement.innerHTML = '寻求回应';
-            statusDiv.style.display = 'none';
-        }
-    }
-
+    // --- UPDATED Diary Logic (Grouped & Collapsed) ---
+    function insertDiaryTimestamp() { const input = document.getElementById('diary-input'); const now = new Date(); const timeString = `\n[${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')} ${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}] `; input.value += timeString; input.focus(); }
+    function saveUserDiary() { const text = document.getElementById('diary-input').value.trim(); if(!text) return; saveDiaryEntry('user', text, '我', new Date().toISOString().split('T')[0], Date.now()); document.getElementById('diary-input').value = ''; alert("日记已保存"); }
+    function saveDiaryEntry(type, text, name, date, id, replyTo = null) { const list = JSON.parse(localStorage.getItem('os_diary')||'[]'); list.unshift({id, type, text, name, date, replyTo}); localStorage.setItem('os_diary', JSON.stringify(list)); renderDiaryFeed(); }
+    async function getAIReply(diaryId, btnElement) { const key = localStorage.getItem('os_key'); if(!key) return alert('请先在设置中配置API Key'); const diaryList = JSON.parse(localStorage.getItem('os_diary')||'[]'); const diaryEntry = diaryList.find(d => d.id === diaryId); if(!diaryEntry) return alert('找不到该日记条目'); const statusDiv = document.getElementById('diary-status'); btnElement.disabled = true; btnElement.innerHTML = '<i class="fas fa-spinner fa-spin"></i> AI回应中...'; statusDiv.style.display = 'block'; statusDiv.innerText = '正在连接AI...'; try { const selectedChar = await new Promise(resolve => { const modal = document.getElementById('yijing-char-select-overlay'); const listDiv = document.getElementById('yijing-char-list'); const title = modal.querySelector('h4'); const subtitle = modal.querySelector('p'); const originalTitle = title.innerText; const originalSubtitle = subtitle.innerHTML; title.innerText = '选择回应身份'; subtitle.innerHTML = '选择一个角色来回应这篇日记。'; listDiv.innerHTML = ''; const chars = JSON.parse(localStorage.getItem('os_chars') || '[]'); const defaultOption = document.createElement('div'); defaultOption.className = 'modal-list-item'; defaultOption.innerHTML = `<div>默认AI (笔友)</div><small>温暖的日记笔友</small>`; defaultOption.onclick = () => { modal.classList.remove('show'); title.innerText = originalTitle; subtitle.innerHTML = originalSubtitle; resolve(null); }; listDiv.appendChild(defaultOption); chars.forEach(char => { const item = document.createElement('div'); item.className = 'modal-list-item'; item.innerHTML = `<div>${escapeHTML(char.name)}</div><small>${escapeHTML(char.desc.substring(0, 25))}${char.desc.length > 25 ? '...' : ''}</small>`; item.onclick = () => { modal.classList.remove('show'); title.innerText = originalTitle; subtitle.innerHTML = originalSubtitle; resolve(char); }; listDiv.appendChild(item); }); modal.classList.add('show'); }); let rolePrompt = "你是一位温暖的日记笔友。"; let aiName = "AI笔友"; if(selectedChar) { rolePrompt = `请严格扮演以下角色来回复日记：\n【角色名】: ${selectedChar.name}\n【角色设定】: ${selectedChar.desc}`; aiName = selectedChar.name; } const masterPrompt = localStorage.getItem('os_master_prompt') || ''; const finalSystemPrompt = masterPrompt ? `${masterPrompt}\n\n---\n\n${rolePrompt}` : rolePrompt; const url = (localStorage.getItem('os_url') || "https://api.openai.com/v1").replace(/\/$/,''); const model = localStorage.getItem('os_model') || "gpt-3.5-turbo"; statusDiv.innerText = `正在连接 ${model}...`; const res = await fetch(url+'/chat/completions', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${key}` }, body: JSON.stringify({ model, messages: [ {role: "system", content: finalSystemPrompt}, {role: "user", content: `这是我的一篇日记，请你以朋友的身份给我一些回应。\n\n---\n${diaryEntry.text}`} ] }) }); if(!res.ok) throw new Error(`API Error: ${res.status}`); const data = await res.json(); if(data.error) throw new Error(data.error.message); saveDiaryEntry('ai', data.choices[0].message.content, aiName, new Date().toISOString().split('T')[0], Date.now(), diaryId); } catch(e) { alert('AI回复失败: ' + e.message); } finally { btnElement.disabled = false; btn.innerHTML = '寻求回应'; statusDiv.style.display = 'none'; } }
 
     function renderDiaryFeed() {
         const div = document.getElementById('diary-feed');
         div.innerHTML = '';
         const rawData = JSON.parse(localStorage.getItem('os_diary')||'[]');
-        const respondedIds = new Set(rawData.filter(d => d.type === 'ai' && d.replyTo).map(d => d.replyTo));
-
-        const grouped = {};
+        
+        // Group by Date
+        const groupedByDate = {};
         rawData.forEach(d => {
             const dateKey = d.date || '往日记忆';
-            if (!grouped[dateKey]) grouped[dateKey] = [];
-            grouped[dateKey].push(d);
+            if (!groupedByDate[dateKey]) groupedByDate[dateKey] = [];
+            groupedByDate[dateKey].push(d);
         });
 
-        Object.keys(grouped).sort().reverse().forEach(date => {
+        // Sort Dates Descending
+        Object.keys(groupedByDate).sort().reverse().forEach(date => {
             const isToday = date === new Date().toISOString().split('T')[0];
             const displayDate = isToday ? `${date} (今天)` : date;
+            
+            // Date Header
             const header = document.createElement('div');
             header.className = 'diary-date-header';
-            header.innerHTML = `<span><i class="fas fa-calendar-day"></i> ${displayDate}</span> <i class="fas fa-chevron-down"></i>`;
-            header.onclick = function() {
-                const groupDiv = this.nextElementSibling;
-                const icon = this.querySelector('.fas.fa-chevron-down');
-                groupDiv.classList.toggle('collapsed');
-                icon.style.transform = groupDiv.classList.contains('collapsed') ? 'rotate(-90deg)' : 'rotate(0deg)';
-            };
-            div.appendChild(header);
-
+            header.innerHTML = `<span><i class="fas fa-calendar-day"></i> ${displayDate}</span> <i class="fas fa-chevron-right"></i>`; // 默认箭头向右，表示折叠
+            
+            // Group Container (Hidden by default)
             const groupDiv = document.createElement('div');
-            groupDiv.className = 'diary-group';
-            // Sort entries within the group by id (timestamp)
-            grouped[date].sort((a,b) => b.id - a.id).forEach(d => {
-                let entryHtml = `<div class="card" style="border-left:3px solid ${d.type==='user'? '#555' : 'var(--accent-color)'}"><b>${escapeHTML(d.name)}</b><br><div style="margin-top:5px;">${formatAIResponse(d.text)}</div>`;
-                
-                // If it's a user entry and hasn't been responded to yet
-                if (d.type === 'user' && !respondedIds.has(d.id)) {
-                    entryHtml += `<div class="diary-entry-actions"><button class="diary-reply-btn" onclick="getAIReply(${d.id}, this)">寻求回应</button></div>`;
-                }
+            groupDiv.className = 'diary-group'; // CSS defaults this to hidden
+            
+            // Toggle Logic
+            header.onclick = function() {
+                const isExpanded = groupDiv.classList.toggle('expanded');
+                const icon = this.querySelector('.fas.fa-chevron-right');
+                icon.style.transform = isExpanded ? 'rotate(90deg)' : 'rotate(0deg)';
+            };
 
-                entryHtml += '</div>';
-                groupDiv.innerHTML += entryHtml;
+            // Process items inside the date
+            // We want to group "User Entry + AI Reply" together
+            const items = groupedByDate[date].sort((a,b) => b.id - a.id); // Newest first
+            const processedIds = new Set();
+
+            items.forEach(item => {
+                if (processedIds.has(item.id)) return;
+
+                if (item.type === 'user') {
+                    // It's a user entry, look for its AI reply
+                    const reply = items.find(i => i.type === 'ai' && i.replyTo === item.id);
+                    
+                    let html = `<div class="diary-event-pair">`;
+                    html += `<div class="diary-meta">${new Date(item.id).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'})}</div>`;
+                    html += `<div class="diary-user-entry">${formatAIResponse(item.text)}</div>`;
+                    
+                    if (reply) {
+                        html += `<div class="diary-ai-reply"><span class="diary-reply-name"><i class="fas fa-feather-alt"></i> ${reply.name}</span>${formatAIResponse(reply.text)}</div>`;
+                        processedIds.add(reply.id);
+                    } else {
+                        html += `<button class="diary-reply-btn outline" onclick="getAIReply(${item.id}, this)">寻求回应</button>`;
+                    }
+                    html += `</div>`;
+                    groupDiv.innerHTML += html;
+                    processedIds.add(item.id);
+                } else if (item.type === 'ai' && !item.replyTo) {
+                    // Orphaned AI entry (shouldn't happen often, but handle it)
+                    let html = `<div class="diary-event-pair">`;
+                    html += `<div class="diary-meta">${new Date(item.id).toLocaleTimeString()}</div>`;
+                    html += `<div class="diary-ai-reply"><span class="diary-reply-name">${item.name} (独立消息)</span>${formatAIResponse(item.text)}</div>`;
+                    html += `</div>`;
+                    groupDiv.innerHTML += html;
+                    processedIds.add(item.id);
+                }
             });
+
+            div.appendChild(header);
             div.appendChild(groupDiv);
         });
     }
 
-    // --- Chat App (Streaming & Actions) ---
+    // --- Chat App Logic (Unchanged) ---
     function migrateChatData() { const oldChat = localStorage.getItem('os_chats'); const newChat = localStorage.getItem('os_chat_sessions'); if (oldChat && !newChat) { try { const oldMessages = JSON.parse(oldChat); if (Array.isArray(oldMessages) && oldMessages.length > 0) { const sessionId = Date.now(); const sessions = {}; sessions[sessionId] = oldMessages; localStorage.setItem('os_chat_sessions', JSON.stringify(sessions)); localStorage.setItem('os_current_chat_id', sessionId); } } catch(e) { console.error("Failed to migrate chat data", e); } localStorage.removeItem('os_chats'); } }
     function getAllChatSessions() { return JSON.parse(localStorage.getItem('os_chat_sessions') || '{}'); }
     function getCurrentChatId() { return localStorage.getItem('os_current_chat_id'); }
     function updateChatRolePicker() { const sel = document.getElementById('chat-role'); sel.innerHTML = '<option value="">默认AI</option>'; JSON.parse(localStorage.getItem('os_chars')||'[]').forEach(r => sel.innerHTML += `<option value='${JSON.stringify(r)}'>${r.name}</option>`); }
     function createNewChatSession() { const sessions = getAllChatSessions(); const newId = Date.now(); sessions[newId] = []; localStorage.setItem('os_chat_sessions', JSON.stringify(sessions)); localStorage.setItem('os_current_chat_id', newId); renderCurrentChatHistory(); updateSessionTriggerText(); }
-    
-    function openSessionList() {
-        const modal = document.getElementById('session-list');
-        const overlay = document.getElementById('session-list-overlay');
-        const sessions = getAllChatSessions();
-        const currentId = getCurrentChatId();
-        modal.innerHTML = '';
-        const newBtn = document.createElement('div');
-        newBtn.className = 'modal-list-item';
-        newBtn.style.textAlign = 'center';
-        newBtn.style.color = 'var(--accent-color)';
-        newBtn.innerHTML = '<i class="fas fa-plus"></i> 创建新对话';
-        newBtn.onclick = () => { createNewChatSession(); overlay.classList.remove('show'); };
-        modal.appendChild(newBtn);
-        const sortedIds = Object.keys(sessions).sort((a,b) => b-a);
-        sortedIds.forEach(id => {
-            const firstUserMsg = sessions[id].find(m => m.type === 'user');
-            const sessionName = firstUserMsg ? firstUserMsg.text.substring(0, 15) + (firstUserMsg.text.length>15?'...':'') : '新对话';
-            const date = new Date(parseInt(id)).toLocaleString();
-            const item = document.createElement('div');
-            item.className = 'modal-list-item ' + (id === currentId ? 'active' : '');
-            item.innerHTML = `<div>${escapeHTML(sessionName)}</div><small>${date}</small>`;
-            item.onclick = () => { localStorage.setItem('os_current_chat_id', id); renderCurrentChatHistory(); updateSessionTriggerText(); overlay.classList.remove('show'); };
-            modal.appendChild(item);
-        });
-        overlay.classList.add('show');
-    }
-
-    function updateSessionTriggerText() {
-        const sessions = getAllChatSessions();
-        const currentId = getCurrentChatId();
-        const history = sessions[currentId] || [];
-        const firstUserMsg = history.find(m => m.type === 'user');
-        const sessionName = firstUserMsg ? firstUserMsg.text.substring(0, 8) + (firstUserMsg.text.length>8?'...':'') : '新对话';
-        document.getElementById('chat-session-name').innerText = sessionName;
-    }
-    
-    function renderCurrentChatHistory() { 
-        const feed = document.getElementById('chat-feed'); 
-        feed.innerHTML = ''; 
-        let currentId = getCurrentChatId(); 
-        const sessions = getAllChatSessions(); 
-        if (!currentId || !sessions[currentId]) { createNewChatSession(); currentId = getCurrentChatId(); } 
-        const history = sessions[currentId] || []; 
-        const totalChars = history.reduce((acc, msg) => acc + msg.text.length, 0);
-        document.getElementById('chat-token-display').innerText = `Est. Tokens: ${Math.ceil(totalChars)}`;
-        history.forEach((msg, index) => { 
-            const div = document.createElement('div'); 
-            div.className = `chat-bubble ${msg.type}`; 
-            let htmlContent = formatAIResponse(msg.text);
-            if (msg.type === 'ai') {
-                htmlContent += `<div class="chat-actions"><span class="chat-action-btn" onclick="regenerateChatMsg(${index})" title="重新生成"><i class="fas fa-sync-alt"></i></span><span class="chat-action-btn" onclick="deleteChatMsg(${index})" title="删除"><i class="fas fa-trash"></i></span></div>`;
-            }
-            div.innerHTML = htmlContent; 
-            feed.appendChild(div); 
-        }); 
-        feed.scrollTop = feed.scrollHeight; 
-    }
-
-    function deleteChatMsg(index) {
-        if (!confirm('确定删除这条消息吗？')) return;
-        const sessions = getAllChatSessions();
-        const currentId = getCurrentChatId();
-        if (sessions[currentId]) {
-            sessions[currentId].splice(index, 1);
-            localStorage.setItem('os_chat_sessions', JSON.stringify(sessions));
-            renderCurrentChatHistory();
-        }
-    }
-
-    function regenerateChatMsg(index) {
-        const sessions = getAllChatSessions();
-        const currentId = getCurrentChatId();
-        const history = sessions[currentId];
-        let userMsgText = "";
-        for (let i = index - 1; i >= 0; i--) { if (history[i].type === 'user') { userMsgText = history[i].text; break; } }
-        if (!userMsgText) return alert("找不到对应的上文，无法重新生成。");
-        history.splice(index, 1);
-        localStorage.setItem('os_chat_sessions', JSON.stringify(sessions));
-        renderCurrentChatHistory();
-        triggerAIStream(userMsgText);
-    }
-
-    async function triggerAIStream(text) {
-        const key = localStorage.getItem('os_key'); if(!key) return alert('请配置Key'); 
-        const btn = document.getElementById('btn-chat-send'); btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>'; 
-        const feed = document.getElementById('chat-feed'); 
-        let currentBubble = document.createElement('div'); currentBubble.className = 'chat-bubble ai'; feed.appendChild(currentBubble); feed.scrollTop = feed.scrollHeight; 
-        let fullReply = ""; 
-        try { 
-            let rolePrompt = "你是一个通用AI助理。"; const roleJSON = document.getElementById('chat-role').value; if(roleJSON) { const r = JSON.parse(roleJSON); rolePrompt = `请严格扮演以下角色：\n【角色名】: ${r.name}\n【角色设定】: ${r.desc}\n用这个角色的口吻对话。`; } 
-            const chatMode = localStorage.getItem('os_chat_mode') || 'casual'; let systemInstruction = ""; if (chatMode === 'casual') { systemInstruction = "\n\n[System Instruction: IMPERATIVE]\n1. You are chatting on a messenger app. REPLY AS A CLOSE FRIEND.\n2. Keep sentences SHORT and CASUAL. Do NOT write long paragraphs.\n3. STRICTLY FORBIDDEN: Markdown headers (###), Bold (**), Bullet points.\n4. Use plain text only. Split distinct thoughts into separate paragraphs.\n5. Tone: Relaxed, colloquial, human-like."; } 
-            const masterPrompt = localStorage.getItem('os_master_prompt') || ''; const finalSystemPrompt = (masterPrompt ? `${masterPrompt}\n\n---\n\n${rolePrompt}` : rolePrompt) + systemInstruction; 
-            const currentId = getCurrentChatId(); const sessions = getAllChatSessions(); const history = sessions[currentId] || []; 
-            const messages = history.map(m => ({ role: m.type === 'user' ? 'user' : 'assistant', content: m.text })); messages.unshift({role: "system", content: finalSystemPrompt}); 
-            const url = (localStorage.getItem('os_url') || "https://api.openai.com/v1").replace(/\/$/,''); const model = localStorage.getItem('os_model') || "gpt-3.5-turbo"; 
-            const res = await fetch(url+'/chat/completions', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${key}` }, body: JSON.stringify({ model, messages, stream: true }) }); 
-            if(!res.ok) throw new Error(`API Error: ${res.status}`); 
-            const reader = res.body.getReader(); const decoder = new TextDecoder("utf-8"); 
-            while (true) { 
-                const { done, value } = await reader.read(); if (done) break; 
-                const chunk = decoder.decode(value, { stream: true }); const lines = chunk.split('\n'); 
-                for (const line of lines) { 
-                    if (line.startsWith('data: ')) { 
-                        const jsonStr = line.slice(6); if (jsonStr === '[DONE]') break; 
-                        try { 
-                            const json = JSON.parse(jsonStr); const content = json.choices[0].delta.content || ""; fullReply += content; 
-                            if (chatMode === 'casual' && fullReply.includes('\n\n')) { 
-                                const parts = fullReply.split('\n\n'); const lastCompletePart = parts.slice(0, -1).join('\n\n'); 
-                                currentBubble.innerHTML = formatAIResponse(lastCompletePart); saveChatMessage('ai', lastCompletePart.trim()); 
-                                fullReply = parts[parts.length - 1]; currentBubble = document.createElement('div'); currentBubble.className = 'chat-bubble ai'; feed.appendChild(currentBubble); 
-                            } 
-                            currentBubble.innerHTML = formatAIResponse(fullReply); feed.scrollTop = feed.scrollHeight; 
-                        } catch (e) { console.error("Stream parse error", e); } 
-                    } 
-                } 
-            } 
-            if (fullReply.trim()) { saveChatMessage('ai', fullReply.trim()); renderCurrentChatHistory(); updateSessionTriggerText(); } else { if(currentBubble.innerHTML === "") currentBubble.remove(); } 
-        } catch (e) { currentBubble.innerHTML = `连接断开：${e.message}`; saveChatMessage('ai', `[系统错误] ${e.message}`); renderCurrentChatHistory(); } finally { btn.disabled = false; btn.innerHTML = '<i class="fas fa-arrow-up"></i>'; } 
-    }
-    
-        async function sendChatMessage() { const input = document.getElementById('chat-input'); const text = input.value.trim(); if(!text) return; saveChatMessage('user', text); input.value = ''; renderCurrentChatHistory(); updateSessionTriggerText(); triggerAIStream(text); }
+    function openSessionList() { const modal = document.getElementById('session-list'); const overlay = document.getElementById('session-list-overlay'); const sessions = getAllChatSessions(); const currentId = getCurrentChatId(); modal.innerHTML = ''; const newBtn = document.createElement('div'); newBtn.className = 'modal-list-item'; newBtn.style.textAlign = 'center'; newBtn.style.color = 'var(--accent-color)'; newBtn.innerHTML = '<i class="fas fa-plus"></i> 创建新对话'; newBtn.onclick = () => { createNewChatSession(); overlay.classList.remove('show'); }; modal.appendChild(newBtn); const sortedIds = Object.keys(sessions).sort((a,b) => b-a); sortedIds.forEach(id => { const firstUserMsg = sessions[id].find(m => m.type === 'user'); const sessionName = firstUserMsg ? firstUserMsg.text.substring(0, 15) + (firstUserMsg.text.length>15?'...':'') : '新对话'; const date = new Date(parseInt(id)).toLocaleString(); const item = document.createElement('div'); item.className = 'modal-list-item ' + (id === currentId ? 'active' : ''); item.innerHTML = `<div>${escapeHTML(sessionName)}</div><small>${date}</small>`; item.onclick = () => { localStorage.setItem('os_current_chat_id', id); renderCurrentChatHistory(); updateSessionTriggerText(); overlay.classList.remove('show'); }; modal.appendChild(item); }); overlay.classList.add('show'); }
+    function updateSessionTriggerText() { const sessions = getAllChatSessions(); const currentId = getCurrentChatId(); const history = sessions[currentId] || []; const firstUserMsg = history.find(m => m.type === 'user'); const sessionName = firstUserMsg ? firstUserMsg.text.substring(0, 8) + (firstUserMsg.text.length>8?'...':'') : '新对话'; document.getElementById('chat-session-name').innerText = sessionName; }
+    function renderCurrentChatHistory() { const feed = document.getElementById('chat-feed'); feed.innerHTML = ''; let currentId = getCurrentChatId(); const sessions = getAllChatSessions(); if (!currentId || !sessions[currentId]) { createNewChatSession(); currentId = getCurrentChatId(); } const history = sessions[currentId] || []; const totalChars = history.reduce((acc, msg) => acc + msg.text.length, 0); document.getElementById('chat-token-display').innerText = `Est. Tokens: ${Math.ceil(totalChars)}`; history.forEach((msg, index) => { const div = document.createElement('div'); div.className = `chat-bubble ${msg.type}`; let htmlContent = formatAIResponse(msg.text); if (msg.type === 'ai') { htmlContent += `<div class="chat-actions"><span class="chat-action-btn" onclick="regenerateChatMsg(${index})" title="重新生成"><i class="fas fa-sync-alt"></i></span><span class="chat-action-btn" onclick="deleteChatMsg(${index})" title="删除"><i class="fas fa-trash"></i></span></div>`; } div.innerHTML = htmlContent; feed.appendChild(div); }); feed.scrollTop = feed.scrollHeight; }
+    function deleteChatMsg(index) { if (!confirm('确定删除这条消息吗？')) return; const sessions = getAllChatSessions(); const currentId = getCurrentChatId(); if (sessions[currentId]) { sessions[currentId].splice(index, 1); localStorage.setItem('os_chat_sessions', JSON.stringify(sessions)); renderCurrentChatHistory(); } }
+    function regenerateChatMsg(index) { const sessions = getAllChatSessions(); const currentId = getCurrentChatId(); const history = sessions[currentId]; let userMsgText = ""; for (let i = index - 1; i >= 0; i--) { if (history[i].type === 'user') { userMsgText = history[i].text; break; } } if (!userMsgText) return alert("找不到对应的上文，无法重新生成。"); history.splice(index, 1); localStorage.setItem('os_chat_sessions', JSON.stringify(sessions)); renderCurrentChatHistory(); triggerAIStream(userMsgText); }
+    async function triggerAIStream(text) { const key = localStorage.getItem('os_key'); if(!key) return alert('请配置Key'); const btn = document.getElementById('btn-chat-send'); btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>'; const feed = document.getElementById('chat-feed'); let currentBubble = document.createElement('div'); currentBubble.className = 'chat-bubble ai'; feed.appendChild(currentBubble); feed.scrollTop = feed.scrollHeight; let fullReply = ""; try { let rolePrompt = "你是一个通用AI助理。"; const roleJSON = document.getElementById('chat-role').value; if(roleJSON) { const r = JSON.parse(roleJSON); rolePrompt = `请严格扮演以下角色：\n【角色名】: ${r.name}\n【角色设定】: ${r.desc}\n用这个角色的口吻对话。`; } const chatMode = localStorage.getItem('os_chat_mode') || 'casual'; let systemInstruction = ""; if (chatMode === 'casual') { systemInstruction = "\n\n[System Instruction: IMPERATIVE]\n1. You are chatting on a messenger app. REPLY AS A CLOSE FRIEND.\n2. Keep sentences SHORT and CASUAL. Do NOT write long paragraphs.\n3. STRICTLY FORBIDDEN: Markdown headers (###), Bold (**), Bullet points.\n4. Use plain text only. Split distinct thoughts into separate paragraphs.\n5. Tone: Relaxed, colloquial, human-like."; } const masterPrompt = localStorage.getItem('os_master_prompt') || ''; const finalSystemPrompt = (masterPrompt ? `${masterPrompt}\n\n---\n\n${rolePrompt}` : rolePrompt) + systemInstruction; const currentId = getCurrentChatId(); const sessions = getAllChatSessions(); const history = sessions[currentId] || []; const messages = history.map(m => ({ role: m.type === 'user' ? 'user' : 'assistant', content: m.text })); messages.unshift({role: "system", content: finalSystemPrompt}); const url = (localStorage.getItem('os_url') || "https://api.openai.com/v1").replace(/\/$/,''); const model = localStorage.getItem('os_model') || "gpt-3.5-turbo"; const res = await fetch(url+'/chat/completions', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${key}` }, body: JSON.stringify({ model, messages, stream: true }) }); if(!res.ok) throw new Error(`API Error: ${res.status}`); const reader = res.body.getReader(); const decoder = new TextDecoder("utf-8"); while (true) { const { done, value } = await reader.read(); if (done) break; const chunk = decoder.decode(value, { stream: true }); const lines = chunk.split('\n'); for (const line of lines) { if (line.startsWith('data: ')) { const jsonStr = line.slice(6); if (jsonStr === '[DONE]') break; try { const json = JSON.parse(jsonStr); const content = json.choices[0].delta.content || ""; fullReply += content; if (chatMode === 'casual' && fullReply.includes('\n\n')) { const parts = fullReply.split('\n\n'); const lastCompletePart = parts.slice(0, -1).join('\n\n'); currentBubble.innerHTML = formatAIResponse(lastCompletePart); saveChatMessage('ai', lastCompletePart.trim()); fullReply = parts[parts.length - 1]; currentBubble = document.createElement('div'); currentBubble.className = 'chat-bubble ai'; feed.appendChild(currentBubble); } currentBubble.innerHTML = formatAIResponse(fullReply); feed.scrollTop = feed.scrollHeight; } catch (e) { console.error("Stream parse error", e); } } } } if (fullReply.trim()) { saveChatMessage('ai', fullReply.trim()); renderCurrentChatHistory(); updateSessionTriggerText(); } else { if(currentBubble.innerHTML === "") currentBubble.remove(); } } catch (e) { currentBubble.innerHTML = `连接断开：${e.message}`; saveChatMessage('ai', `[系统错误] ${e.message}`); renderCurrentChatHistory(); } finally { btn.disabled = false; btn.innerHTML = '<i class="fas fa-arrow-up"></i>'; } }
+    function sendChatMessage() { const input = document.getElementById('chat-input'); const text = input.value.trim(); if(!text) return; saveChatMessage('user', text); input.value = ''; renderCurrentChatHistory(); updateSessionTriggerText(); triggerAIStream(text); }
     function saveChatMessage(type, text) { const sessions = getAllChatSessions(); const currentId = getCurrentChatId(); if(!sessions[currentId]) sessions[currentId] = []; sessions[currentId].push({type, text}); localStorage.setItem('os_chat_sessions', JSON.stringify(sessions)); }
     function toggleChatMode() { const btn = document.getElementById('chat-mode-toggle'); let currentMode = localStorage.getItem('os_chat_mode') || 'casual'; const newMode = currentMode === 'casual' ? 'pro' : 'casual'; localStorage.setItem('os_chat_mode', newMode); setInitialChatModeIcon(); alert(`聊天模式已切换为：${newMode === 'casual' ? '朋友闲聊 (短句/流式)' : '专业助理 (长文)'}`); }
     function setInitialChatModeIcon() { const btn = document.getElementById('chat-mode-toggle'); if (!btn) return; const currentMode = localStorage.getItem('os_chat_mode') || 'casual'; if (currentMode === 'casual') { btn.className = 'fas fa-bolt'; btn.style.color = 'var(--accent-color)'; } else { btn.className = 'fas fa-book'; btn.style.color = 'var(--text-sub)'; } }
-            // --- Daily Widget Collapse Logic ---
-    function toggleDailyContentCollapse() {
-        const contentArea = document.getElementById('daily-collapsible-area');
-        const collapseIcon = document.getElementById('daily-collapse-icon');
-        if (!contentArea || !collapseIcon) return; // 确保元素存在
-
-        const isCollapsed = contentArea.classList.toggle('collapsed');
-        collapseIcon.classList.toggle('rotated', isCollapsed);
-        localStorage.setItem('os_daily_content_collapsed', isCollapsed); // 保存折叠状态到本地存储
-    }
 </script>
 </body>
 </html>
